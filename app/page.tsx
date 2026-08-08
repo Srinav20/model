@@ -1,60 +1,96 @@
 import React from 'react';
 
 export default function EngagementInvite() {
+  const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+    'Lakshmi Vedika Indrani Function Halls Sujatha Nagar Visakhapatnam 530051'
+  )}`;
+
   return (
-    <main className="min-h-screen bg-gradient-to-b from-amber-50 via-rose-50 to-orange-50 text-stone-800 flex flex-col items-center justify-between p-4 sm:p-8 font-sans">
-      <div className="w-full max-w-2xl text-center pt-8 pb-4">
-        <span className="text-sm uppercase tracking-[0.3em] text-amber-700 font-semibold">
-          Together with their families
-        </span>
+    <main className="min-h-screen bg-gradient-to-b from-amber-50 via-orange-50 to-rose-50 text-stone-800 flex flex-col items-center justify-between p-4 sm:p-8 font-sans">
+
+      {/* Top Traditional Header */}
+      <div className="w-full max-w-xl text-center pt-6 pb-2 space-y-2">
+        <p className="text-xs uppercase tracking-[0.3em] text-amber-700 font-semibold">
+          ॥ श्री गणेशाय नमः ॥
+        </p>
+        <p className="text-xs sm:text-sm uppercase tracking-widest text-stone-500 font-medium">
+          We cordially invite you to attend the engagement ceremony of
+        </p>
       </div>
 
-      <section className="w-full max-w-2xl bg-white/80 backdrop-blur-md rounded-3xl p-8 sm:p-12 shadow-xl border border-amber-100 text-center space-y-6 my-auto">
-        <div className="space-y-2">
-          <p className="text-xs sm:text-sm tracking-widest text-stone-500 uppercase">
-            Are Joyfully Celebrating The Engagement Of
-          </p>
-          <h1 className="text-4xl sm:text-6xl font-serif font-bold text-amber-900 tracking-wide py-2">
-            Sri <span className="text-rose-600 font-sans font-light">&</span> Harshitha
+      {/* Main Single-Column Invitation Card */}
+      <section className="w-full max-w-xl bg-white/85 backdrop-blur-md rounded-3xl p-8 sm:p-12 shadow-xl border border-amber-200/80 text-center space-y-8 my-auto">
+
+        {/* Couple Names */}
+        <div className="space-y-3">
+          <h1 className="text-4xl sm:text-6xl font-serif font-bold text-amber-900 tracking-wide">
+            Srivatsav
+          </h1>
+          <div className="flex items-center justify-center gap-3">
+            <span className="w-12 h-px bg-amber-400" />
+            <span className="text-2xl font-serif italic text-rose-600">&</span>
+            <span className="w-12 h-px bg-amber-400" />
+          </div>
+          <h1 className="text-4xl sm:text-6xl font-serif font-bold text-amber-900 tracking-wide">
+            Harshitha
           </h1>
         </div>
 
-        <div className="w-24 h-0.5 bg-amber-400 mx-auto my-4 rounded-full" />
-
-        <p className="text-stone-600 italic text-base sm:text-lg max-w-md mx-auto">
-          "Two lives, two hearts, joined together in friendship, united forever in love."
-        </p>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-6">
-          <div className="bg-amber-50/70 p-4 rounded-2xl border border-amber-200/60">
-            <h3 className="text-xs uppercase tracking-wider text-amber-800 font-bold mb-1">
-              Date & Time
-            </h3>
-            <p className="text-stone-800 font-medium">Date to be announced</p>
-            <p className="text-sm text-stone-500">Time TBA</p>
+        {/* Date & Time Flow */}
+        <div className="py-5 border-y border-amber-200/70 space-y-2">
+          <p className="text-xs uppercase tracking-widest text-amber-700 font-semibold">
+            Date & Time
+          </p>
+          <div className="text-2xl sm:text-3xl font-serif text-stone-800 font-bold">
+            Sunday, August 23, 2026
           </div>
+          <p className="text-lg font-semibold text-rose-700">
+            at 11:15 AM
+          </p>
+        </div>
 
-          <div className="bg-rose-50/70 p-4 rounded-2xl border border-rose-200/60">
-            <h3 className="text-xs uppercase tracking-wider text-rose-800 font-bold mb-1">
-              Venue
-            </h3>
-            <p className="text-stone-800 font-medium">Venue Details</p>
-            <p className="text-sm text-stone-500">City, State</p>
+        {/* Venue Information */}
+        <div className="space-y-2">
+          <p className="text-xs uppercase tracking-widest text-amber-700 font-semibold">
+            Venue
+          </p>
+          <h2 className="text-xl font-bold text-stone-800">
+            Lakshmi Vedika, Indrani Function Halls
+          </h2>
+          <p className="text-stone-600 text-sm">
+            (3rd & 4th floors)
+          </p>
+          <p className="text-stone-600 text-sm">
+            Sujatha Nagar, Visakhapatnam - 530051
+          </p>
+
+          <div className="pt-3">
+            <a
+              href={googleMapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-amber-700 hover:bg-amber-800 text-white font-medium px-6 py-2.5 rounded-full shadow-md transition-all text-sm"
+            >
+              📍 Open in Google Maps
+            </a>
           </div>
         </div>
 
-        <div className="pt-6">
-          <a
-            href="#rsvp"
-            className="inline-block bg-amber-600 hover:bg-amber-700 text-white font-medium px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5 active:translate-y-0"
-          >
-            Save The Date
-          </a>
+        {/* Hosts / Warm Regards */}
+        <div className="pt-5 border-t border-amber-200/70 space-y-1">
+          <p className="text-xs uppercase tracking-widest text-stone-500 font-semibold">
+            Warm Regards
+          </p>
+          <p className="text-lg font-serif font-bold text-amber-900">
+            P.V. Appa Rao (Sai) & Lakshmi Bhavani
+          </p>
         </div>
+
       </section>
 
-      <footer className="w-full max-w-2xl text-center py-6 text-xs text-stone-500">
-        We look forward to celebrating this special day with you!
+      {/* Footer */}
+      <footer className="w-full max-w-xl text-center py-6 text-xs text-stone-500">
+        Looking forward to celebrating this joyful occasion with you!
       </footer>
     </main>
   );
