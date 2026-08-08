@@ -137,7 +137,7 @@ export const translations: Record<Language, Translations> = {
         },
         {
           title: "A Growing Bond",
-          subtitle: "In the Weeks That Followed",
+          subtitle: "In the Months That Followed",
           text: "With the blessings of our families, conversations followed, and a quiet understanding began to grow between us. As we came to know one another better, shared values, hopes, and everyday conversations slowly turned familiarity into trust.",
         },
         {
@@ -224,7 +224,7 @@ export const translations: Record<Language, Translations> = {
         },
         {
           title: "పెరుగుతున్న అనుబంధం",
-          subtitle: "తరువాతి వారాల్లో",
+          subtitle: "తరువాతి నెలల్లో",
           text: "మా కుటుంబాల ఆశీర్వాదంతో సంభాషణలు కొనసాగాయి, మా మధ్య మెల్లగా ఒక అవగాహన పెరగసాగింది. ఒకరినొకరు మరింత తెలుసుకుంటూ, ఉమ్మడి విలువలు, ఆశయాలు, నిత్య సంభాషణలు పరిచయాన్ని నమ్మకంగా మార్చాయి.",
         },
         {
