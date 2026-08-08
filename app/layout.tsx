@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: "Srivatsav & Harshitha | Engagement",
   description:
-    "Engagement invitation of Srivatsav and Harshitha – 23 August 2026",
+    "Engagement invitation of Srivatsav and Harshitha - 23 August 2026",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
