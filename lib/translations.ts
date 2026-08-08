@@ -72,6 +72,7 @@ export type Translations = {
     addToCalendar: string;
     whatsapp: string;
     whatsappNote: string;
+    seeYouSoon: string;
   };
 };
 
@@ -164,6 +165,7 @@ export const translations: Record<Language, Translations> = {
       addToCalendar: "Add to Calendar",
       whatsapp: "WhatsApp Contact",
       whatsappNote: "Number coming soon",
+      seeYouSoon: "SEE YOU SOON",
     },
   },
 
@@ -250,6 +252,7 @@ export const translations: Record<Language, Translations> = {
       addToCalendar: "క్యాలెండర్‌కు జోడించండి",
       whatsapp: "వాట్సాప్‌లో సంప్రదించండి",
       whatsappNote: "నంబర్ త్వరలో అందుబాటులోకి వస్తుంది",
+      seeYouSoon: "త్వరలో కలుద్దాం",
     },
   },
 };

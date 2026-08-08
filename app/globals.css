@@ -612,6 +612,33 @@ html {
   color: rgba(202, 160, 87, 0.55);
 }
 
+/* Final sign-off — the very last line of the invitation, below the ornament
+   divider. Deliberately subtle: smaller and quieter than the rest of the
+   Closing section rather than competing with "We Would Be Delighted...".
+   English gets a small tracked-out capsule look; Telugu is reset to normal
+   spacing/case under :lang(te) below, same reasoning as the rest of the
+   Telugu-safe typography rules further down this file. */
+.closing-final-reveal {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.closing-final-glyph {
+  margin: 0 0 12px;
+  font-size: 16px;
+  color: rgba(202, 160, 87, 0.6);
+}
+
+.closing-final-signoff {
+  margin: 0;
+
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgba(242, 217, 166, 0.7);
+}
+
 @media (min-width: 768px) {
   .closing-section {
     padding: 112px 24px 128px;
@@ -1176,14 +1203,26 @@ html {
 }
 
 .invitation-gate-button {
-  margin-top: 12px;
-  padding: 12px 28px;
+  margin: 12px auto 0;
+
+  /* No fixed/percentage width was set here before, but the button still
+     wrapped: as a flex child of .invitation-gate-inner (width: min(88%,
+     380px)), its shrink-to-fit sizing was capped by that container on
+     narrow phones, which is narrower than "[ Open Invitation ]" at 13px
+     with 0.2em letter-spacing. white-space: nowrap + width: fit-content
+     force it to size to its actual single-line content instead, growing
+     past the card's padding on very narrow screens rather than wrapping. */
+  width: fit-content;
+  min-width: 200px;
+  white-space: nowrap;
+  padding: 12px 32px;
 
   font-family: inherit;
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
+  text-align: center;
   color: #fdf8ee;
   cursor: pointer;
 
@@ -1238,6 +1277,7 @@ html {
 :lang(te) .closing-heading,
 :lang(te) .closing-signoff,
 :lang(te) .closing-button,
+:lang(te) .closing-final-signoff,
 :lang(te) .journey-label,
 :lang(te) .journey-subtitle,
 :lang(te) .journey-outro-heading,
@@ -1262,6 +1302,7 @@ html {
 :lang(te) .journey-outro-text,
 :lang(te) .closing-heading,
 :lang(te) .closing-signoff,
+:lang(te) .closing-final-signoff,
 :lang(te) .blessings-heading,
 :lang(te) .ceremony-countdown-label,
 :lang(te) .countdown-label,

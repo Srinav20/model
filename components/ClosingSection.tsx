@@ -79,6 +79,15 @@ export default function ClosingSection() {
       </ScrollReveal>
 
       <OrnamentDivider className="closing-ornament" />
+
+      {/* Final sign-off — the last line of the invitation, after the
+          Maps/Calendar/WhatsApp actions and the ornament divider above. */}
+      <ScrollReveal className="closing-final-reveal">
+        <p className="closing-glyph closing-final-glyph" aria-hidden="true">
+          ❦
+        </p>
+        <p className="closing-final-signoff">{t.closing.seeYouSoon}</p>
+      </ScrollReveal>
     </section>
   );
 }
