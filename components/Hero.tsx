@@ -1,11 +1,16 @@
+"use client";
+
 import TempleHeroBackground from "./TempleHeroBackground";
 import TempleHeroPhoto from "./TempleHeroPhoto";
 import GaneshaMotif from "./GaneshaMotif";
 import { eventData } from "@/lib/event-data";
+import { useLanguage } from "@/lib/language-context";
 
 export default function Hero() {
+  const { t } = useLanguage();
+
   return (
-    <section className="hero" aria-label="Engagement invitation">
+    <section id="home" className="hero" aria-label="Engagement invitation">
       {/* SVG silhouette as an instant, zero-request base layer — also the
           fallback look if the photo below is ever removed. */}
       <div className="hero-bg" aria-hidden="true">
@@ -26,11 +31,9 @@ export default function Hero() {
           <p className="hero-blessing">{eventData.blessing}</p>
         </div>
 
-        <p className="hero-intro">With the blessings of our families</p>
+        <p className="hero-intro">{t.hero.intro}</p>
 
-        <p className="hero-small">
-          We joyfully invite you to celebrate the engagement of
-        </p>
+        <p className="hero-small">{t.hero.subIntro}</p>
 
         <div className="hero-names">
           <h1>{eventData.groom}</h1>
@@ -49,7 +52,7 @@ export default function Hero() {
         </p>
 
         <a href="#invitation" className="scroll-indicator">
-          <span>Scroll to enter</span>
+          <span>{t.hero.scrollCta}</span>
           <span className="arrow" aria-hidden="true">
             ↓
           </span>

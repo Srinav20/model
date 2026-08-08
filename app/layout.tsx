@@ -7,6 +7,10 @@ import {
   Noto_Serif_Telugu,
 } from "next/font/google";
 import "./globals.css";
+import { LanguageProvider } from "@/lib/language-context";
+import { AudioProvider } from "@/lib/audio-context";
+import SiteNav from "@/components/SiteNav";
+import OpenInvitationGate from "@/components/OpenInvitationGate";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,9 +38,11 @@ const notoSerifDevanagari = Noto_Serif_Devanagari({
   weight: ["500", "600"],
 });
 
-// Same reasoning as the Devanagari font above, for the Telugu "మా ప్రయాణం"
-// label in Our Journey — no Latin font here covers Telugu glyphs, and this
-// script also shouldn't get English-style letter-spacing/uppercase applied.
+// Telugu glyph support for the language toggle — needed now that any
+// heading/body copy across the page can render in Telugu, not just one
+// label. Used narrowly via :lang(te) selectors in globals.css rather than
+// applied document-wide, so English text (including the couple's names,
+// which never translate) keeps its existing Latin fonts untouched.
 const notoSerifTelugu = Noto_Serif_Telugu({
   variable: "--font-telugu",
   subsets: ["telugu"],
@@ -55,7 +61,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} ${playfairDisplay.variable} ${notoSerifDevanagari.variable} ${notoSerifTelugu.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <LanguageProvider>
+          <AudioProvider>
+            <SiteNav />
+            <OpenInvitationGate />
+            {children}
+          </AudioProvider>
+        </LanguageProvider>
+      </body>
     </html>
   );
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useLanguage } from "@/lib/language-context";
 
 type TimeLeft = {
   days: number;
@@ -26,12 +27,7 @@ function getTimeLeft(targetMs: number): TimeLeft {
   };
 }
 
-const UNITS: { key: "days" | "hours" | "minutes" | "seconds"; label: string }[] = [
-  { key: "days", label: "Days" },
-  { key: "hours", label: "Hours" },
-  { key: "minutes", label: "Minutes" },
-  { key: "seconds", label: "Seconds" },
-];
+const UNIT_KEYS = ["days", "hours", "minutes", "seconds"] as const;
 
 /**
  * Live countdown to `target` (ISO datetime string).
@@ -52,6 +48,7 @@ const UNITS: { key: "days" | "hours" | "minutes" | "seconds"; label: string }[] 
  * changed text nodes, so there's no full-section reflow per tick.
  */
 export default function Countdown({ target }: { target: string }) {
+  const { t } = useLanguage();
   const targetMs = new Date(target).getTime();
   const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(null);
 
@@ -70,7 +67,7 @@ export default function Countdown({ target }: { target: string }) {
   }, [targetMs]);
 
   if (timeLeft?.reached) {
-    return <p className="countdown-reached">Today is the day</p>;
+    return <p className="countdown-reached">{t.countdown.todayIsTheDay}</p>;
   }
 
   // Stable fallback (server render + first client paint before useEffect
@@ -80,12 +77,12 @@ export default function Countdown({ target }: { target: string }) {
 
   return (
     <div className="countdown-grid" role="group" aria-label="Countdown to the engagement ceremony">
-      {UNITS.map((unit) => (
-        <div className="countdown-unit" key={unit.key}>
+      {UNIT_KEYS.map((key) => (
+        <div className="countdown-unit" key={key}>
           <span className="countdown-value">
-            {String(display[unit.key]).padStart(2, "0")}
+            {String(display[key]).padStart(2, "0")}
           </span>
-          <span className="countdown-label">{unit.label}</span>
+          <span className="countdown-label">{t.countdown[key]}</span>
         </div>
       ))}
     </div>

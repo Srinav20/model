@@ -1,9 +1,14 @@
+"use client";
+
 import Image from "next/image";
 import TwoRings from "./TwoRings";
 import ScrollReveal from "./ScrollReveal";
 import { eventData } from "@/lib/event-data";
+import { useLanguage } from "@/lib/language-context";
 
 export default function BlessingsSection() {
+  const { t } = useLanguage();
+
   return (
     <section
       id="blessings"
@@ -11,7 +16,7 @@ export default function BlessingsSection() {
       aria-label="Blessings"
     >
       <ScrollReveal className="blessings-reveal">
-        <h2 className="blessings-heading">With Love &amp; Blessings</h2>
+        <h2 className="blessings-heading">{t.blessings.heading}</h2>
 
         <TwoRings className="blessings-ornament" />
 
@@ -25,13 +30,12 @@ export default function BlessingsSection() {
         />
 
         <p className="blessings-text">
-          As we begin this new chapter,
-          <br />
-          we seek your blessings and
-          <br />
-          look forward to celebrating
-          <br />
-          this special day with you.
+          {t.blessings.lines.map((line, index) => (
+            <span key={line}>
+              {line}
+              {index < t.blessings.lines.length - 1 && <br />}
+            </span>
+          ))}
         </p>
       </ScrollReveal>
     </section>

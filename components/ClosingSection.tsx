@@ -1,9 +1,13 @@
+"use client";
+
 import OrnamentDivider from "./OrnamentDivider";
 import ScrollReveal from "./ScrollReveal";
 import { eventData, googleMapsUrl } from "@/lib/event-data";
 import { buildEventICSDataUrl } from "@/lib/calendar";
+import { useLanguage } from "@/lib/language-context";
 
 export default function ClosingSection() {
+  const { t } = useLanguage();
   const hasWhatsapp = eventData.whatsappNumber.length > 0;
 
   return (
@@ -14,14 +18,14 @@ export default function ClosingSection() {
         </p>
 
         <h2 className="closing-heading">
-          We Would Be Delighted
+          {t.closing.headingLine1}
           <br />
-          To Have You With Us
+          {t.closing.headingLine2}
         </h2>
 
-        <p className="closing-text">We look forward to celebrating with you.</p>
+        <p className="closing-text">{t.closing.text}</p>
 
-        <p className="closing-signoff">With Love,</p>
+        <p className="closing-signoff">{t.closing.signoff}</p>
         <p className="closing-names">
           {eventData.groom} &amp; {eventData.bride}
         </p>
@@ -38,7 +42,7 @@ export default function ClosingSection() {
             className="closing-button"
             aria-label="View the venue location on Google Maps"
           >
-            View Location
+            {t.closing.viewLocation}
           </a>
 
           <a
@@ -47,7 +51,7 @@ export default function ClosingSection() {
             className="closing-button"
             aria-label="Download a calendar invite for the engagement ceremony"
           >
-            Add to Calendar
+            {t.closing.addToCalendar}
           </a>
 
           {hasWhatsapp ? (
@@ -58,7 +62,7 @@ export default function ClosingSection() {
               className="closing-button"
               aria-label="Contact via WhatsApp"
             >
-              WhatsApp Contact
+              {t.closing.whatsapp}
             </a>
           ) : (
             <button
@@ -67,8 +71,8 @@ export default function ClosingSection() {
               className="closing-button closing-button--disabled"
               aria-label="WhatsApp contact number not yet available"
             >
-              WhatsApp Contact
-              <span className="closing-button-note">Number coming soon</span>
+              {t.closing.whatsapp}
+              <span className="closing-button-note">{t.closing.whatsappNote}</span>
             </button>
           )}
         </div>

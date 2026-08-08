@@ -686,17 +686,6 @@ html {
   color: #8a6a3f;
 }
 
-.journey-label-telugu {
-  margin: 4px 0 0;
-
-  font-family: var(--font-telugu), "Noto Sans Telugu", sans-serif;
-  font-size: 15px;
-  letter-spacing: normal;
-  word-spacing: normal;
-  text-transform: none;
-  color: #8a6a3f;
-}
-
 .journey-heading {
   margin: 18px 0 12px;
 
@@ -893,4 +882,392 @@ html {
     flex: 0 0 45%;
     max-width: none;
   }
+}
+
+/* --- Site navigation (global, fixed on top of every section) --- */
+.site-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 500;
+}
+
+.site-nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  padding: 14px 20px;
+
+  background: linear-gradient(180deg, rgba(45, 8, 16, 0.94), rgba(45, 8, 16, 0.84));
+  border-bottom: 1px solid rgba(202, 160, 87, 0.3);
+  backdrop-filter: blur(6px);
+}
+
+.site-nav-brand {
+  font-family: var(--font-display), Georgia, "Times New Roman", serif;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: #f2d9a6;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.site-nav-links {
+  display: none;
+  align-items: center;
+  gap: 26px;
+}
+
+.site-nav-links a {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(253, 248, 238, 0.85);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.site-nav-links a:hover,
+.site-nav-links a:focus-visible {
+  color: #caa057;
+}
+
+.site-nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.site-nav-menu-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+
+  width: 32px;
+  height: 32px;
+  padding: 0;
+
+  background: transparent;
+  border: 1px solid rgba(202, 160, 87, 0.4);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.site-nav-menu-button span {
+  display: block;
+  width: 14px;
+  height: 1.5px;
+  background: #f2d9a6;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.site-nav-menu-button[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(5.5px) rotate(45deg);
+}
+
+.site-nav-menu-button[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+
+.site-nav-menu-button[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-5.5px) rotate(-45deg);
+}
+
+.site-nav-mobile-menu {
+  display: flex;
+  flex-direction: column;
+
+  max-height: 0;
+  overflow: hidden;
+
+  background: rgba(45, 8, 16, 0.97);
+  border-bottom: 1px solid rgba(202, 160, 87, 0.3);
+
+  transition: max-height 0.3s ease;
+}
+
+.site-nav-mobile-menu.is-open {
+  max-height: 320px;
+}
+
+.site-nav-mobile-menu a {
+  padding: 14px 20px;
+
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(253, 248, 238, 0.9);
+  text-decoration: none;
+  border-top: 1px solid rgba(202, 160, 87, 0.15);
+}
+
+.site-nav-mobile-menu a:first-child {
+  border-top: none;
+}
+
+.site-nav-mobile-menu a:hover,
+.site-nav-mobile-menu a:focus-visible {
+  color: #caa057;
+}
+
+@media (min-width: 768px) {
+  .site-nav-bar {
+    padding: 16px 40px;
+  }
+
+  .site-nav-links {
+    display: flex;
+  }
+
+  .site-nav-menu-button {
+    display: none;
+  }
+
+  .site-nav-mobile-menu {
+    display: none;
+  }
+}
+
+/* Anchor targets land below the fixed nav instead of underneath it. */
+#home,
+#our-journey,
+#blessings,
+#closing {
+  scroll-margin-top: 84px;
+}
+
+/* --- Language toggle (site nav) --- */
+.language-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.language-toggle-option {
+  padding: 4px 2px;
+
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: rgba(253, 248, 238, 0.6);
+
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.language-toggle-option.is-active {
+  color: #f2d9a6;
+}
+
+.language-toggle-option:hover,
+.language-toggle-option:focus-visible {
+  color: #caa057;
+}
+
+.language-toggle-divider {
+  font-size: 11px;
+  color: rgba(202, 160, 87, 0.4);
+}
+
+/* --- Music control (site nav) --- */
+.music-control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  width: 30px;
+  height: 30px;
+  padding: 0;
+
+  color: #f2d9a6;
+  background: transparent;
+  border: 1px solid rgba(202, 160, 87, 0.4);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.music-control:hover,
+.music-control:focus-visible {
+  color: #caa057;
+  border-color: #caa057;
+}
+
+.music-control svg {
+  width: 15px;
+  height: 15px;
+}
+
+/* --- Open Invitation gate (first-visit interaction) --- */
+.invitation-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 900;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+
+  background: radial-gradient(circle at 50% 35%, #5c0f1c, #2d0810 78%);
+
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.7s ease, visibility 0s linear 0s;
+}
+
+.invitation-gate--dismissed {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.7s ease, visibility 0s linear 0.7s;
+  pointer-events: none;
+}
+
+.invitation-gate-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+
+  width: min(88%, 380px);
+  padding: 48px 28px;
+  text-align: center;
+
+  background: rgba(20, 5, 9, 0.35);
+  border: 1px solid rgba(202, 160, 87, 0.4);
+  border-radius: 24px;
+}
+
+.invitation-gate-ganesha {
+  width: 48px;
+  height: auto;
+  color: #f2d9a6;
+  margin-bottom: 4px;
+}
+
+.invitation-gate-names {
+  margin: 0;
+
+  font-family: var(--font-display), Georgia, "Times New Roman", serif;
+  font-size: clamp(22px, 6vw, 28px);
+  font-weight: 600;
+  color: #fff4dc;
+}
+
+.invitation-gate-date {
+  margin: 0;
+
+  font-size: 12px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(253, 248, 238, 0.65);
+}
+
+.invitation-gate-button {
+  margin-top: 12px;
+  padding: 12px 28px;
+
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #fdf8ee;
+  cursor: pointer;
+
+  background: rgba(202, 160, 87, 0.1);
+  border: 1px solid #caa057;
+  border-radius: 999px;
+
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.invitation-gate-button:hover,
+.invitation-gate-button:focus-visible {
+  background: rgba(202, 160, 87, 0.22);
+  transform: translateY(-1px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .invitation-gate,
+  .invitation-gate--dismissed {
+    transition: opacity 0.01s linear, visibility 0s linear 0s !important;
+  }
+
+  .invitation-gate-button:hover,
+  .invitation-gate-button:focus-visible {
+    transform: none !important;
+  }
+
+  .site-nav-menu-button span {
+    transition: none !important;
+  }
+
+  .site-nav-mobile-menu {
+    transition: none !important;
+  }
+}
+
+/* --- Telugu-safe typography ---
+   Same underlying issue that broke the Devanagari blessing line: heavy
+   letter-spacing and forced uppercase transforms break glyph shaping on
+   non-Latin scripts. These classes carry both in English (for the
+   small-caps look) — under :lang(te) (kept in sync with the active
+   language by lib/language-context.tsx) they fall back to normal spacing,
+   no forced case, and the Telugu-serif font stack. Scoped to specific
+   classes rather than the whole document, so the couple's names and other
+   permanently-English text (Latin script) are never touched by this. */
+:lang(te) .hero-intro,
+:lang(te) .hero-small,
+:lang(te) .scroll-indicator,
+:lang(te) .countdown-label,
+:lang(te) .blessings-heading,
+:lang(te) .closing-heading,
+:lang(te) .closing-signoff,
+:lang(te) .closing-button,
+:lang(te) .journey-label,
+:lang(te) .journey-subtitle,
+:lang(te) .journey-outro-heading,
+:lang(te) .ceremony-countdown-label,
+:lang(te) .site-nav-links a,
+:lang(te) .site-nav-mobile-menu a,
+:lang(te) .site-nav-brand,
+:lang(te) .invitation-gate-date,
+:lang(te) .invitation-gate-button {
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+:lang(te) .hero-intro,
+:lang(te) .hero-small,
+:lang(te) .journey-intro-text,
+:lang(te) .journey-text,
+:lang(te) .blessings-text,
+:lang(te) .closing-text,
+:lang(te) .journey-title,
+:lang(te) .journey-heading,
+:lang(te) .journey-outro-text,
+:lang(te) .closing-heading,
+:lang(te) .closing-signoff,
+:lang(te) .blessings-heading,
+:lang(te) .ceremony-countdown-label,
+:lang(te) .countdown-label,
+:lang(te) .site-nav-links a,
+:lang(te) .site-nav-mobile-menu a,
+:lang(te) .invitation-gate-date,
+:lang(te) .invitation-gate-button {
+  font-family: var(--font-telugu), "Noto Sans Telugu", sans-serif;
 }
