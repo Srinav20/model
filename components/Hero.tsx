@@ -1,5 +1,5 @@
-import Image from "next/image";
 import TempleHeroBackground from "./TempleHeroBackground";
+import TempleHeroPhoto from "./TempleHeroPhoto";
 import { eventData } from "@/lib/event-data";
 
 export default function Hero() {
@@ -11,17 +11,11 @@ export default function Hero() {
         <TempleHeroBackground />
       </div>
 
-      {/* Real gopuram photo, layered on top of the SVG base. */}
+      {/* Real gopuram photo — currently the existing temple-hero.jpg; see
+          TempleHeroPhoto.tsx for the responsive mobile/desktop swap once
+          those two final assets exist. */}
       <div className="hero-bg-photo">
-        <Image
-          src="/images/temple-hero.jpg"
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          quality={80}
-          style={{ objectFit: "cover", objectPosition: "50% 38%" }}
-        />
+        <TempleHeroPhoto />
       </div>
 
       <div className="hero-overlay" />

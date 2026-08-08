@@ -65,6 +65,19 @@ html {
   animation: heroBgPan 50s ease-in-out infinite alternate;
 }
 
+.hero-bg-photo img {
+  object-fit: cover;
+  /* Favours the gopuram/sky over the busier foreground; nudged slightly
+     lower on desktop where the wider crop shows less top/bottom. */
+  object-position: 50% 30%;
+}
+
+@media (min-width: 768px) {
+  .hero-bg-photo img {
+    object-position: 50% 42%;
+  }
+}
+
 .hero-overlay {
   position: absolute;
   inset: 0;
@@ -76,9 +89,25 @@ html {
       rgba(15, 7, 2, 0.78));
 }
 
+/* Seam fade: blends the hero's bottom edge into the details section's own
+   background colour (amber-950, #451a03) so the cut from cinematic hero to
+   the next panel feels like one continuous surface rather than a hard cut. */
+.hero::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 150px;
+  z-index: 3;
+  pointer-events: none;
+
+  background: linear-gradient(to bottom, rgba(69, 26, 3, 0) 0%, #451a03 100%);
+}
+
 .hero-content {
   position: relative;
-  z-index: 3;
+  z-index: 4;
 
   width: min(92%, 680px);
   text-align: center;
@@ -246,6 +275,22 @@ html {
   60% {
     transform: translateY(3px);
   }
+}
+
+/* Straddles the hero → details seam (see components/SeamOrnament.tsx and
+   its wrapper in app/page.tsx, which is deliberately outside <main> so this
+   isn't clipped by main's own overflow-hidden). */
+.seam-ornament {
+  position: absolute;
+  top: -22px;
+  left: 50%;
+  z-index: 5;
+  transform: translateX(-50%);
+
+  width: 132px;
+  height: auto;
+
+  pointer-events: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
