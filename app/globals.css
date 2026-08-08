@@ -11,6 +11,7 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-display: var(--font-display);
+  --font-devanagari: var(--font-devanagari);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -118,11 +119,38 @@ html {
   text-shadow: 0 2px 14px rgba(0, 0, 0, 0.5);
 }
 
-.hero-blessing {
-  margin-bottom: 24px;
+.hero-blessing-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
 
+  margin-bottom: 24px;
+}
+
+.hero-ganesha {
+  width: 44px;
+  height: auto;
+  color: #ffd88a;
+  opacity: 0;
+  animation: heroFadeUp 0.8s ease-out 0s forwards;
+}
+
+@media (min-width: 768px) {
+  .hero-ganesha {
+    width: 56px;
+  }
+}
+
+.hero-blessing {
+  /* Devanagari script — no Latin-style tracking. Letter-spacing breaks
+     conjunct/matra shaping in Devanagari, so this is deliberately different
+     from the English headings below, which keep their tracking. */
+  font-family: var(--font-devanagari), "Noto Sans Devanagari", sans-serif;
   font-size: 15px;
-  letter-spacing: 0.18em;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
   color: #ffd88a;
 
   opacity: 0;
@@ -297,6 +325,7 @@ html {
 
   .hero-bg svg,
   .hero-bg-photo img,
+  .hero-ganesha,
   .hero-blessing,
   .hero-intro,
   .hero-small,

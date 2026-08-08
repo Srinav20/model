@@ -1,5 +1,6 @@
 import TempleHeroBackground from "./TempleHeroBackground";
 import TempleHeroPhoto from "./TempleHeroPhoto";
+import GaneshaMotif from "./GaneshaMotif";
 import { eventData } from "@/lib/event-data";
 
 export default function Hero() {
@@ -20,7 +21,10 @@ export default function Hero() {
       <div className="hero-overlay" />
 
       <div className="hero-content">
-        <p className="hero-blessing">{eventData.blessing}</p>
+        <div className="hero-blessing-block">
+          <GaneshaMotif className="hero-ganesha" />
+          <p className="hero-blessing">{eventData.blessing}</p>
+        </div>
 
         <p className="hero-intro">With the blessings of our families</p>
 

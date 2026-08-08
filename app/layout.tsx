@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Playfair_Display } from "next/font/google";
+import {
+  Geist,
+  Geist_Mono,
+  Playfair_Display,
+  Noto_Serif_Devanagari,
+} from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -19,6 +24,15 @@ const playfairDisplay = Playfair_Display({
   weight: ["500", "600", "700"],
 });
 
+// Proper Devanagari glyph support for the Sanskrit blessing line — Playfair
+// Display and Geist have no Devanagari coverage, which is what forced the
+// browser's fallback rendering (and made letter-spacing look broken).
+const notoSerifDevanagari = Noto_Serif_Devanagari({
+  variable: "--font-devanagari",
+  subsets: ["devanagari"],
+  weight: ["500", "600"],
+});
+
 export const metadata = {
   title: "Srivatsav & Harshitha | Engagement",
   description:
@@ -29,7 +43,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${playfairDisplay.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${playfairDisplay.variable} ${notoSerifDevanagari.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
