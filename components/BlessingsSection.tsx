@@ -33,10 +33,6 @@ export default function BlessingsSection() {
           <br />
           this special day with you.
         </p>
-
-        <p className="blessings-names">
-          {eventData.groom} &amp; {eventData.bride}
-        </p>
       </ScrollReveal>
     </section>
   );

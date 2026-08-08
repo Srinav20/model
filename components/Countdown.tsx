@@ -36,6 +36,14 @@ const UNITS: { key: "days" | "hours" | "minutes" | "seconds"; label: string }[] 
 /**
  * Live countdown to `target` (ISO datetime string).
  *
+ * Timezone: `target` (see lib/event-data.ts) is
+ * "2026-08-23T11:15:00+05:30" — an explicit IST (UTC+5:30) offset baked
+ * into the string itself. `new Date(target)` resolves that to one fixed
+ * point in absolute time, so the countdown always targets 11:15 AM IST
+ * regardless of the visitor's or server's own local timezone — there's no
+ * separate "convert to IST" step needed, and no risk of it silently
+ * running against UTC or any other zone.
+ *
  * Hydration-safe by construction: initial state is `null`, so the very
  * first client render matches the server-rendered markup exactly (both
  * show the same zeroed fallback). The real, clock-dependent value is only
@@ -48,11 +56,17 @@ export default function Countdown({ target }: { target: string }) {
   const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(null);
 
   useEffect(() => {
-    setTimeLeft(getTimeLeft(targetMs));
-    const id = setInterval(() => {
-      setTimeLeft(getTimeLeft(targetMs));
-    }, 1000);
-    return () => clearInterval(id);
+    const update = () => setTimeLeft(getTimeLeft(targetMs));
+    // Deferred one tick (not called synchronously in the effect body) so
+    // this is a callback reacting to the clock, not a render-time update —
+    // same effective timing (fires on the next tick, imperceptible), just
+    // structured the way react-hooks/set-state-in-effect expects.
+    const initial = setTimeout(update, 0);
+    const id = setInterval(update, 1000);
+    return () => {
+      clearTimeout(initial);
+      clearInterval(id);
+    };
   }, [targetMs]);
 
   if (timeLeft?.reached) {

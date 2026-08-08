@@ -4,6 +4,7 @@ import {
   Geist_Mono,
   Playfair_Display,
   Noto_Serif_Devanagari,
+  Noto_Serif_Telugu,
 } from "next/font/google";
 import "./globals.css";
 
@@ -33,7 +34,16 @@ const notoSerifDevanagari = Noto_Serif_Devanagari({
   weight: ["500", "600"],
 });
 
-export const metadata = {
+// Same reasoning as the Devanagari font above, for the Telugu "మా ప్రయాణం"
+// label in Our Journey — no Latin font here covers Telugu glyphs, and this
+// script also shouldn't get English-style letter-spacing/uppercase applied.
+const notoSerifTelugu = Noto_Serif_Telugu({
+  variable: "--font-telugu",
+  subsets: ["telugu"],
+  weight: ["500", "600"],
+});
+
+export const metadata: Metadata = {
   title: "Srivatsav & Harshitha | Engagement",
   description:
     "Engagement invitation of Srivatsav and Harshitha - 23 August 2026",
@@ -43,7 +53,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${playfairDisplay.variable} ${notoSerifDevanagari.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${playfairDisplay.variable} ${notoSerifDevanagari.variable} ${notoSerifTelugu.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>

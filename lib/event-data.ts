@@ -6,8 +6,8 @@ export const eventData = {
   groom: "Srivatsav",
   bride: "Harshitha",
 
-  // Full display date, used in the venue/details card.
-  dateDisplay: "Sunday, August 23, 2026",
+  // Full display date, used in the Engagement Ceremony section.
+  dateDisplay: "Sunday, 23 August 2026",
   // Compact date, used in the hero (dot-separated, uppercase by CSS).
   dateShort: "23 · August · 2026",
   // Machine-readable date for <time dateTime> / future countdown logic.
@@ -22,6 +22,13 @@ export const eventData = {
   parents: "P.V. Appa Rao (Sai) & Lakshmi Bhavani",
 
   blessing: "॥ श्री गणेशाय नमः ॥",
+
+  // TODO: add the real contact number here (digits only, with country
+  // code, e.g. "919876543210" for +91) to enable the WhatsApp button in
+  // the closing section. Left blank deliberately — until this is filled
+  // in, that button renders disabled rather than linking to a wrong or
+  // placeholder number.
+  whatsappNumber: "",
 } as const;
 
 // Google Maps deep link — identical query string to the one already live in

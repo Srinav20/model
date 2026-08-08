@@ -46,7 +46,6 @@ export default function TempleHeroPhoto() {
           the mobile asset — the documented next/image "art direction"
           pattern: a raw <img> here still gets Next's optimized, responsive
           srcSet via getImageProps. */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
       <img {...mobileImgProps} alt="" />
     </picture>
   );

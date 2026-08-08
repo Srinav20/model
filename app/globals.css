@@ -12,6 +12,7 @@
   --font-mono: var(--font-geist-mono);
   --font-display: var(--font-display);
   --font-devanagari: var(--font-devanagari);
+  --font-telugu: var(--font-telugu);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -346,37 +347,10 @@ html {
   }
 }
 
-/* --- Countdown section --- */
-/* First appearance of the site's warm-ivory/sandalwood half of the palette
-   (hero + details are deliberately dark) — deep maroon numerals, antique
-   gold dividers/ornament, no cards or shadows. */
-.countdown-section {
-  padding: 72px 24px 84px;
-  text-align: center;
-
-  background: linear-gradient(to bottom, #fdf8ee, #f3e6cb);
-  color: #6b1220;
-}
-
-.countdown-heading {
-  margin: 0;
-
-  font-family: var(--font-display), Georgia, "Times New Roman", serif;
-  font-size: clamp(20px, 5vw, 28px);
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #6b1220;
-}
-
-.countdown-ornament {
-  display: block;
-  width: 120px;
-  height: auto;
-  margin: 20px auto 32px;
-  color: #caa057;
-}
-
+/* --- Countdown (Countdown.tsx) — now embedded inside the Engagement
+   Ceremony card via .ceremony-countdown further down. These are the base
+   rules the component itself renders classes against; kept here rather
+   than moved so Countdown.tsx works unmodified wherever it's dropped. --- */
 .countdown-grid {
   display: flex;
   justify-content: center;
@@ -414,15 +388,6 @@ html {
   color: #8a6a3f;
 }
 
-.countdown-date {
-  margin: 36px 0 0;
-
-  font-size: 13px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: #8a6a3f;
-}
-
 .countdown-reached {
   margin: 0;
 
@@ -433,10 +398,6 @@ html {
 }
 
 @media (min-width: 768px) {
-  .countdown-section {
-    padding: 96px 24px 104px;
-  }
-
   .countdown-unit {
     padding: 0 28px;
   }
@@ -519,5 +480,417 @@ html {
 
   .blessings-image {
     max-width: 480px;
+  }
+}
+
+/* --- Closing section (invitation finale — no RSVP) --- */
+.closing-section {
+  padding: 80px 24px 96px;
+  text-align: center;
+
+  background: linear-gradient(180deg, #5c0f1c, #430a15);
+  color: #fdf8ee;
+}
+
+.closing-glyph {
+  margin: 0 0 20px;
+  font-size: 22px;
+  color: #caa057;
+}
+
+.closing-glyph--heart {
+  margin: 28px 0 36px;
+}
+
+.closing-heading {
+  margin: 0 0 20px;
+
+  font-family: var(--font-display), Georgia, "Times New Roman", serif;
+  font-size: clamp(22px, 6vw, 30px);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #fdf8ee;
+}
+
+.closing-text {
+  max-width: 320px;
+  margin: 0 auto;
+
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(253, 248, 238, 0.85);
+}
+
+.closing-signoff {
+  margin: 32px 0 6px;
+
+  font-size: 13px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(253, 248, 238, 0.7);
+}
+
+.closing-names {
+  margin: 0;
+
+  font-family: var(--font-display), Georgia, "Times New Roman", serif;
+  font-size: clamp(24px, 6vw, 32px);
+  font-weight: 600;
+  color: #f2d9a6;
+}
+
+.closing-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 14px;
+
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.closing-button {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 14px 20px;
+
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-align: center;
+  text-decoration: none;
+  color: #fdf8ee;
+  cursor: pointer;
+
+  background: rgba(202, 160, 87, 0.08);
+  border: 1px solid rgba(202, 160, 87, 0.55);
+  border-radius: 10px;
+
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.closing-button:hover,
+.closing-button:focus-visible {
+  background: rgba(202, 160, 87, 0.18);
+  border-color: #caa057;
+}
+
+.closing-button:focus-visible {
+  outline: 2px solid #f2d9a6;
+  outline-offset: 2px;
+}
+
+.closing-button--disabled,
+.closing-button--disabled:hover {
+  cursor: not-allowed;
+  opacity: 0.5;
+  background: transparent;
+  border-color: rgba(202, 160, 87, 0.35);
+}
+
+.closing-button-note {
+  display: block;
+  margin-top: 4px;
+
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: none;
+  color: rgba(253, 248, 238, 0.6);
+}
+
+.closing-ornament {
+  display: block;
+  width: 96px;
+  height: auto;
+  margin: 56px auto 0;
+  color: rgba(202, 160, 87, 0.55);
+}
+
+@media (min-width: 768px) {
+  .closing-section {
+    padding: 112px 24px 128px;
+  }
+}
+
+/* --- Countdown, reskinned for the dark Engagement Ceremony card ---
+   Same Countdown.tsx component/markup as always (.countdown-grid /
+   .countdown-unit / .countdown-value / .countdown-label) — this only
+   overrides colour + sizing so it reads correctly against the ceremony
+   card's dark background instead of the deep-maroon-on-ivory look those
+   base rules assume. Sized down from the base rule too, since it should
+   support the date/time above it rather than dominate the card. */
+.ceremony-countdown {
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(202, 160, 87, 0.3);
+}
+
+.ceremony-countdown-label {
+  margin: 0 0 14px;
+
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #e3b463;
+}
+
+.ceremony-countdown .countdown-grid {
+  row-gap: 16px;
+}
+
+.ceremony-countdown .countdown-unit {
+  padding: 0 14px;
+}
+
+.ceremony-countdown .countdown-unit + .countdown-unit {
+  border-left-color: rgba(202, 160, 87, 0.3);
+}
+
+.ceremony-countdown .countdown-value {
+  font-size: clamp(22px, 6vw, 30px);
+  color: #fff4dc;
+}
+
+.ceremony-countdown .countdown-label {
+  color: rgba(255, 244, 220, 0.6);
+}
+
+.ceremony-countdown .countdown-reached {
+  font-size: clamp(18px, 5vw, 24px);
+  color: #fff4dc;
+}
+
+/* --- Our Journey --- */
+.journey-section {
+  padding: 72px 24px 88px;
+  text-align: center;
+
+  background: linear-gradient(to bottom, #fdf8ee, #f3e6cb);
+  color: #6b1220;
+}
+
+.journey-label {
+  margin: 0;
+
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #8a6a3f;
+}
+
+.journey-label-telugu {
+  margin: 4px 0 0;
+
+  font-family: var(--font-telugu), "Noto Sans Telugu", sans-serif;
+  font-size: 15px;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  color: #8a6a3f;
+}
+
+.journey-heading {
+  margin: 18px 0 12px;
+
+  font-family: var(--font-display), Georgia, "Times New Roman", serif;
+  font-size: clamp(24px, 6vw, 34px);
+  font-weight: 600;
+  color: #6b1220;
+}
+
+.journey-intro-text {
+  max-width: 380px;
+  margin: 0 auto;
+
+  font-size: 15px;
+  line-height: 1.7;
+  font-style: italic;
+  color: #5a4632;
+}
+
+.journey-timeline {
+  position: relative;
+
+  list-style: none;
+  max-width: 1000px;
+  margin: 64px auto 0;
+  padding: 0;
+}
+
+.journey-chapter {
+  position: relative;
+}
+
+.journey-chapter + .journey-chapter {
+  margin-top: 64px;
+}
+
+.journey-chapter-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+}
+
+.journey-marker {
+  display: none;
+}
+
+.journey-image-wrap {
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+.journey-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 18px;
+}
+
+.journey-copy {
+  max-width: 380px;
+  margin: 0 auto;
+}
+
+.journey-number {
+  display: block;
+  margin-bottom: 6px;
+
+  font-family: var(--font-display), Georgia, "Times New Roman", serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  color: #caa057;
+}
+
+.journey-title {
+  margin: 0 0 4px;
+
+  font-family: var(--font-display), Georgia, "Times New Roman", serif;
+  font-size: clamp(20px, 5vw, 26px);
+  font-weight: 600;
+  color: #6b1220;
+}
+
+.journey-subtitle {
+  margin: 0 0 12px;
+
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #8a6a3f;
+}
+
+.journey-date {
+  margin: 0 0 12px;
+
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #6b1220;
+}
+
+.journey-text {
+  margin: 0;
+
+  font-size: 15px;
+  line-height: 1.7;
+  color: #5a4632;
+}
+
+.journey-outro {
+  margin-top: 72px;
+}
+
+.journey-glyph {
+  margin: 0 0 12px;
+  font-size: 22px;
+  color: #caa057;
+}
+
+.journey-outro-heading {
+  margin: 0 0 6px;
+
+  font-family: var(--font-display), Georgia, "Times New Roman", serif;
+  font-size: clamp(16px, 4vw, 19px);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #8a6a3f;
+}
+
+.journey-outro-text {
+  margin: 0;
+
+  font-size: 13px;
+  font-style: italic;
+  color: #5a4632;
+}
+
+@media (min-width: 768px) {
+  .journey-section {
+    padding: 104px 24px 120px;
+  }
+
+  /* Thin gold vertical timeline line, desktop only. */
+  .journey-timeline::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 1px;
+    background: rgba(202, 160, 87, 0.4);
+  }
+
+  .journey-marker {
+    display: block;
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 12px;
+    height: 12px;
+    background: #caa057;
+    border: 3px solid #fdf8ee;
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px rgba(202, 160, 87, 0.5);
+  }
+
+  .journey-chapter-inner {
+    flex-direction: row;
+    justify-content: center;
+    gap: 56px;
+    text-align: left;
+  }
+
+  /* Chapter 02 (2nd <li>) swaps sides: story left, image right. Chapters
+     01 and 03 (1st/3rd) keep image left, story right. */
+  .journey-chapter:nth-child(even) .journey-chapter-inner {
+    flex-direction: row-reverse;
+    text-align: right;
+  }
+
+  .journey-image-wrap {
+    flex: 0 0 45%;
+    max-width: none;
+  }
+
+  .journey-copy {
+    flex: 0 0 45%;
+    max-width: none;
   }
 }
