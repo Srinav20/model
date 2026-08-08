@@ -11,9 +11,8 @@ export default function Hero() {
         <TempleHeroBackground />
       </div>
 
-      {/* Real gopuram photo — currently the existing temple-hero.jpg; see
-          TempleHeroPhoto.tsx for the responsive mobile/desktop swap once
-          those two final assets exist. */}
+      {/* Real gopuram photo — responsive: mobile below 768px, existing
+          desktop image at 768px+. See TempleHeroPhoto.tsx. */}
       <div className="hero-bg-photo">
         <TempleHeroPhoto />
       </div>
