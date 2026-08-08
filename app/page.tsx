@@ -1,6 +1,8 @@
 import React from 'react';
 import Hero from '@/components/Hero';
 import SeamOrnament from '@/components/SeamOrnament';
+import CountdownSection from '@/components/CountdownSection';
+import BlessingsSection from '@/components/BlessingsSection';
 import { googleMapsUrl } from '@/lib/event-data';
 
 export default function Home() {
@@ -85,6 +87,10 @@ export default function Home() {
           </footer>
         </main>
       </div>
+
+      <CountdownSection />
+
+      <BlessingsSection />
     </>
   );
 }
