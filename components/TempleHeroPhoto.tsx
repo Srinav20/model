@@ -8,9 +8,13 @@ import { getImageProps } from "next/image";
  * "invalid image" in the optimizer) — a decorative layer underneath does
  * NOT prevent that, since next/image actively fetches/optimizes whatever
  * src it's given regardless of what's behind it. So this component falls
- * back to the original single asset until both files are real:
+ * back to a single existing asset until both files are real:
  *
- *   1. NOW            → /public/images/temple-hero.jpg (existing 1024x572)
+ *   1. NOW            → /public/images/temple-hero.png (current fallback —
+ *                         update this filename/extension if you swap it
+ *                         for a different file later; a mismatched
+ *                         extension is exactly what caused a silent
+ *                         fallback-to-SVG before this was fixed)
  *   2. new art ready   → /public/images/temple-hero-mobile.webp  (9:16,  ~1440x2560)
  *                         /public/images/temple-hero-desktop.webp (~16:9, >=1920x1080)
  *   3. flip the flag   → RESPONSIVE_SOURCES_READY = true below
@@ -31,11 +35,12 @@ export default function TempleHeroPhoto() {
   if (!RESPONSIVE_SOURCES_READY) {
     const { props } = getImageProps({
       ...shared,
-      src: "/images/temple-hero.jpg",
-      // Actual source dimensions (landscape, hence the softness on mobile —
-      // this temporary fallback doesn't fix that, it just stops the 404s).
-      width: 1024,
-      height: 572,
+      src: "/images/temple-hero.png",
+      // Approximate dimensions — exact px doesn't matter visually since the
+      // CSS layer forces width/height:100% + object-fit:cover regardless;
+      // this is only used for Next's internal aspect-ratio bookkeeping.
+      width: 1600,
+      height: 900,
     });
 
     return <img {...props} alt="" />;

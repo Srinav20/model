@@ -2,7 +2,7 @@
  * TempleHeroBackground
  * ---------------------------------------------------------------------------
  * Base layer behind the real photo (components/Hero.tsx renders this first,
- * then layers /public/images/temple-hero.jpg on top via next/image).
+ * then layers /public/images/temple-hero.png on top via next/image).
  *
  * It exists so the hero never shows a blank/white flash: it paints instantly
  * (no network request, no decode time) the moment the section mounts, and it
