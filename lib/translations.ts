@@ -43,6 +43,17 @@ type JourneyChapterCopy = {
   text: string;
 };
 
+// Explicit two-line split for a family's names ("father & " on line 1,
+// mother's full name on line 2) — rendered as two separate <span> block
+// elements in EngagementCeremonySection.tsx rather than one long string
+// left to the browser's own word-wrapping. That's deliberate: automatic
+// wrapping doesn't know "Lakshmi Bhavani" or "Sai Lakshmi" are a single
+// name and previously broke a mother's name across the wrap point.
+type ParentNameLines = {
+  line1: string;
+  line2: string;
+};
+
 export type Translations = {
   nav: {
     home: string;
@@ -102,8 +113,8 @@ export type Translations = {
     venueName: string;
     venueFloors: string;
     venueAddress: string;
-    groomParents: string;
-    brideParents: string;
+    groomParents: ParentNameLines;
+    brideParents: ParentNameLines;
   };
 };
 
@@ -133,7 +144,7 @@ export const translations: Record<Language, Translations> = {
       intro: "With the blessings of our families",
       subIntro: "We joyfully invite you to celebrate the engagement of",
       scrollCta: "Scroll to enter",
-      blessing: "With the blessings of Lord Ganesha",
+      blessing: "॥ Om Ganeshaya Namaha ॥",
     },
     ceremony: {
       heading: "Engagement Ceremony",
@@ -194,7 +205,7 @@ export const translations: Record<Language, Translations> = {
       headingLine1: "We Would Be Delighted",
       headingLine2: "To Have You With Us",
       text: "We look forward to celebrating with you.",
-      signoff: "With Love,",
+      signoff: "With Love",
       viewLocation: "View on Google Maps",
       addToCalendar: "Add to Calendar",
       whatsapp: "WhatsApp Contact",
@@ -209,8 +220,8 @@ export const translations: Record<Language, Translations> = {
       venueName: "Lakshmi Vedika, Indrani Function Halls",
       venueFloors: "3rd & 4th floors",
       venueAddress: "Sujatha Nagar, Visakhapatnam - 530051",
-      groomParents: "P.V. Appa Rao (Sai) & Lakshmi Bhavani",
-      brideParents: "G.V. Satyanarayana & Sai Lakshmi",
+      groomParents: { line1: "P.V. Appa Rao (Sai) &", line2: "Lakshmi Bhavani" },
+      brideParents: { line1: "G.V. Satyanarayana &", line2: "Sai Lakshmi" },
     },
   },
 
@@ -295,7 +306,7 @@ export const translations: Record<Language, Translations> = {
       headingLine1: "మీ సమక్షం మాకు",
       headingLine2: "ఎంతో సంతోషాన్నిస్తుంది",
       text: "మీతో కలిసి జరుపుకోవాలని ఎదురుచూస్తున్నాము.",
-      signoff: "ప్రేమతో,",
+      signoff: "ప్రేమతో",
       viewLocation: "గూగుల్ మ్యాప్స్‌లో చూడండి",
       addToCalendar: "క్యాలెండర్‌కు జోడించండి",
       whatsapp: "వాట్సాప్‌లో సంప్రదించండి",
@@ -315,8 +326,8 @@ export const translations: Record<Language, Translations> = {
       venueName: "లక్ష్మి వేదిక, ఇంద్రాణి ఫంక్షన్ హాల్స్",
       venueFloors: "3వ & 4వ అంతస్తులు",
       venueAddress: "సుజాతనగర్, విశాఖపట్నం - 530051",
-      groomParents: "పి.వి. అప్పారావు (సాయి) & లక్ష్మీ భవాని",
-      brideParents: "జి.వి. సత్యనారాయణ & సాయి లక్ష్మి",
+      groomParents: { line1: "పి.వి. అప్పారావు (సాయి) &", line2: "లక్ష్మీ భవాని" },
+      brideParents: { line1: "జి.వి. సత్యనారాయణ &", line2: "సాయి లక్ష్మి" },
     },
   },
 };

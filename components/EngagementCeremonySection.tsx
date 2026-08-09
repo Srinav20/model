@@ -99,8 +99,12 @@ export default function EngagementCeremonySection() {
         </div>
 
         {/* Warm regards — two balanced family blocks (groom's + bride's).
-            grid-cols-1 stacks them on mobile; sm:grid-cols-2 sits them
-            side by side once there's enough width. Both blocks share
+            All grid/breakpoint behavior lives in .ceremony-warm-regards-grid
+            in globals.css now (not Tailwind's grid-cols-* utilities) — the
+            2-column layout only kicks in around 1050px, not Tailwind's
+            640px "sm" step, since the card itself stays capped at max-w-xl
+            regardless of viewport, and 640px was nowhere near wide enough
+            for two full name pairs side by side. Both blocks share
             identical classes so neither reads as more prominent. */}
         <div className="pt-6 border-t border-amber-500/30 space-y-4">
           <p
@@ -112,17 +116,27 @@ export default function EngagementCeremonySection() {
           >
             {t.ceremony.warmRegardsLabel}
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+          <div className="ceremony-warm-regards-grid">
             <div className="space-y-1">
               <p className={labelClass}>{t.ceremony.groomFamilyLabel}</p>
-              <p className="text-lg font-serif font-bold text-amber-200">
-                {t.event.groomParents}
+              <p className="ceremony-parent-name font-serif font-bold text-amber-200">
+                <span className="ceremony-parent-name-line">
+                  {t.event.groomParents.line1}
+                </span>
+                <span className="ceremony-parent-name-line">
+                  {t.event.groomParents.line2}
+                </span>
               </p>
             </div>
             <div className="space-y-1">
               <p className={labelClass}>{t.ceremony.brideFamilyLabel}</p>
-              <p className="text-lg font-serif font-bold text-amber-200">
-                {t.event.brideParents}
+              <p className="ceremony-parent-name font-serif font-bold text-amber-200">
+                <span className="ceremony-parent-name-line">
+                  {t.event.brideParents.line1}
+                </span>
+                <span className="ceremony-parent-name-line">
+                  {t.event.brideParents.line2}
+                </span>
               </p>
             </div>
           </div>

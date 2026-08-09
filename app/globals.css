@@ -710,6 +710,52 @@ html {
   color: #fff4dc;
 }
 
+/* --- Warm Regards: two family blocks ---
+   The Ceremony card is capped at max-w-xl (576px) at every viewport width
+   — that cap doesn't change here, since widening the whole card is out of
+   scope for a Warm Regards-only fix. Below 1050px: single column, full
+   card width per block. At 1050px+: two columns (~220-230px each inside
+   this card, regardless of how wide the browser window gets).
+
+   Each family name is now two explicit lines ("<father> &" / "<mother's
+   full name>", see the two .ceremony-parent-name-line spans in
+   EngagementCeremonySection.tsx) instead of one long string left to the
+   browser's own word-wrapping — that's what previously let "Lakshmi
+   Bhavani" and "Sai Lakshmi" get split apart mid-name. Each line on its
+   own is short enough (max ~21 characters) to fit on one line even in the
+   narrower 2-column layout, so this no longer needs the aggressive
+   per-breakpoint font shrinking or negative-margin tricks the old
+   single-line version required — plain, consistent sizing is enough. */
+.ceremony-warm-regards-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 1050px) {
+  .ceremony-warm-regards-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 3rem;
+  }
+}
+
+.ceremony-parent-name {
+  margin: 0;
+  font-size: 18px;
+  text-align: center;
+}
+
+.ceremony-parent-name-line {
+  display: block;
+  white-space: nowrap;
+}
+
+@media (min-width: 1050px) {
+  .ceremony-parent-name {
+    font-size: 16px;
+  }
+}
+
 /* --- Our Journey --- */
 .journey-section {
   padding: 72px 24px 88px;

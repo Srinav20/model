@@ -12,7 +12,7 @@ import {
 } from "react";
 
 const GATE_STORAGE_KEY = "invitation-opened";
-const AUDIO_SRC = "/audio/background.mp3";
+const AUDIO_SRC = "/audio/bgm.mpeg";
 const VOLUME = 0.4;
 
 type AudioContextValue = {
