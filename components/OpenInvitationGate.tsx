@@ -3,7 +3,6 @@
 import GaneshaMotif from "./GaneshaMotif";
 import { useAudio } from "@/lib/audio-context";
 import { useLanguage } from "@/lib/language-context";
-import { eventData } from "@/lib/event-data";
 
 /**
  * First-visit interaction gate. Sits above the whole page (fixed, full
@@ -31,7 +30,7 @@ export default function OpenInvitationGate() {
         <p className="invitation-gate-names">
           {t.event.groom} &amp; {t.event.bride}
         </p>
-        <p className="invitation-gate-date">{eventData.dateShort}</p>
+        <p className="invitation-gate-date">{t.event.dateShort}</p>
         <button
           type="button"
           className="invitation-gate-button"

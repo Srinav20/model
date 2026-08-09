@@ -917,6 +917,49 @@ html {
   color: #5a4632;
 }
 
+/* Mobile-only chapter order: number/title first, then the image, then
+   subtitle/date/narration — for all three chapters. Below 768px,
+   .journey-copy (the number+title+subtitle+date+text wrapper) becomes
+   `display: contents`, which makes its own box disappear for layout
+   purposes so its children become direct flex items of
+   .journey-chapter-inner, right alongside .journey-image-wrap — that lets
+   `order` place the image between "title" and "subtitle" instead of
+   before both. Purely additive and scoped to max-width: 767px, so it
+   never touches the desktop block below (min-width: 768px): there,
+   .journey-copy reverts to its normal box (see that block's own
+   `.journey-copy { flex: 0 0 45%; ... }` rule), which automatically makes
+   these `order` values on its children irrelevant again — no reset
+   needed, no change to the existing alternating desktop timeline. */
+@media (max-width: 767px) {
+  .journey-copy {
+    display: contents;
+  }
+
+  .journey-number {
+    order: 1;
+  }
+
+  .journey-title {
+    order: 2;
+  }
+
+  .journey-image-wrap {
+    order: 3;
+  }
+
+  .journey-subtitle {
+    order: 4;
+  }
+
+  .journey-date {
+    order: 5;
+  }
+
+  .journey-text {
+    order: 6;
+  }
+}
+
 @media (min-width: 768px) {
   .journey-section {
     padding: 104px 24px 120px;
