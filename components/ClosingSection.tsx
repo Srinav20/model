@@ -4,7 +4,6 @@ import OrnamentDivider from "./OrnamentDivider";
 import ScrollReveal from "./ScrollReveal";
 import GoogleMapsIcon from "./GoogleMapsIcon";
 import { eventData, googleMapsUrl } from "@/lib/event-data";
-import { buildEventICSDataUrl } from "@/lib/calendar";
 import { useLanguage } from "@/lib/language-context";
 
 export default function ClosingSection() {
@@ -47,15 +46,6 @@ export default function ClosingSection() {
             {t.closing.viewLocation}
           </a>
 
-          <a
-            href={buildEventICSDataUrl()}
-            download="Srivatsav-Harshitha-Engagement.ics"
-            className="closing-button"
-            aria-label="Download a calendar invite for the engagement ceremony"
-          >
-            {t.closing.addToCalendar}
-          </a>
-
           {hasWhatsapp ? (
             <a
               href={`https://wa.me/${eventData.whatsappNumber}`}
@@ -83,7 +73,9 @@ export default function ClosingSection() {
       <OrnamentDivider className="closing-ornament" />
 
       {/* Final sign-off — the last line of the invitation, after the
-          Maps/Calendar/WhatsApp actions and the ornament divider above. */}
+          Maps/WhatsApp actions and the ornament divider above. Add to
+          Calendar was intentionally removed from here (kept only in the
+          Engagement Ceremony section) to avoid a duplicate action. */}
       <ScrollReveal className="closing-final-reveal">
         <p className="closing-glyph closing-final-glyph" aria-hidden="true">
           ❦
