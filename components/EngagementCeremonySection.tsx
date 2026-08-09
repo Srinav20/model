@@ -121,10 +121,10 @@ export default function EngagementCeremonySection() {
               <p className={labelClass}>{t.ceremony.groomFamilyLabel}</p>
               <p className="ceremony-parent-name font-serif font-bold text-amber-200">
                 <span className="ceremony-parent-name-line">
-                  {t.event.groomParents.line1}
+                  {t.event.groomParents.father} &amp;
                 </span>
                 <span className="ceremony-parent-name-line">
-                  {t.event.groomParents.line2}
+                  {t.event.groomParents.mother}
                 </span>
               </p>
             </div>
@@ -132,10 +132,10 @@ export default function EngagementCeremonySection() {
               <p className={labelClass}>{t.ceremony.brideFamilyLabel}</p>
               <p className="ceremony-parent-name font-serif font-bold text-amber-200">
                 <span className="ceremony-parent-name-line">
-                  {t.event.brideParents.line1}
+                  {t.event.brideParents.father} &amp;
                 </span>
                 <span className="ceremony-parent-name-line">
-                  {t.event.brideParents.line2}
+                  {t.event.brideParents.mother}
                 </span>
               </p>
             </div>

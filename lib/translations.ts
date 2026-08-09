@@ -43,15 +43,20 @@ type JourneyChapterCopy = {
   text: string;
 };
 
-// Explicit two-line split for a family's names ("father & " on line 1,
-// mother's full name on line 2) — rendered as two separate <span> block
-// elements in EngagementCeremonySection.tsx rather than one long string
-// left to the browser's own word-wrapping. That's deliberate: automatic
-// wrapping doesn't know "Lakshmi Bhavani" or "Sai Lakshmi" are a single
-// name and previously broke a mother's name across the wrap point.
-type ParentNameLines = {
-  line1: string;
-  line2: string;
+// Father and mother stored individually (not pre-joined into one string)
+// so both consumers can format them differently:
+//   - EngagementCeremonySection.tsx (Warm Regards) renders "{father} &" as
+//     one line and "{mother}" as a second line — two separate <span>
+//     block elements rather than one long string left to the browser's
+//     own word-wrapping (that previously broke a mother's name across the
+//     wrap point).
+//   - ContactFamiliesSection.tsx renders father and mother as two fully
+//     separate entries, each with its own (optional) phone number.
+// Same underlying names in both places — just addressed individually
+// instead of duplicated as two different pre-formatted strings.
+type FamilyNames = {
+  father: string;
+  mother: string;
 };
 
 export type Translations = {
@@ -105,6 +110,10 @@ export type Translations = {
     whatsappNote: string;
     seeYouSoon: string;
   };
+  contact: {
+    label: string;
+    heading: string;
+  };
   event: {
     groom: string;
     bride: string;
@@ -113,8 +122,8 @@ export type Translations = {
     venueName: string;
     venueFloors: string;
     venueAddress: string;
-    groomParents: ParentNameLines;
-    brideParents: ParentNameLines;
+    groomParents: FamilyNames;
+    brideParents: FamilyNames;
   };
 };
 
@@ -212,6 +221,10 @@ export const translations: Record<Language, Translations> = {
       whatsappNote: "Number coming soon",
       seeYouSoon: "SEE YOU SOON",
     },
+    contact: {
+      label: "REACH US",
+      heading: "Contact the Families",
+    },
     event: {
       groom: "Srivatsav",
       bride: "Harshitha",
@@ -220,8 +233,8 @@ export const translations: Record<Language, Translations> = {
       venueName: "Lakshmi Vedika, Indrani Function Halls",
       venueFloors: "3rd & 4th floors",
       venueAddress: "Sujatha Nagar, Visakhapatnam - 530051",
-      groomParents: { line1: "P.V. Appa Rao (Sai) &", line2: "Lakshmi Bhavani" },
-      brideParents: { line1: "G.V. Satyanarayana &", line2: "Sai Lakshmi" },
+      groomParents: { father: "P.V. Appa Rao (Sai)", mother: "Lakshmi Bhavani" },
+      brideParents: { father: "G.V. Satyanarayana", mother: "Sai Lakshmi" },
     },
   },
 
@@ -313,6 +326,10 @@ export const translations: Record<Language, Translations> = {
       whatsappNote: "నంబర్ త్వరలో అందుబాటులోకి వస్తుంది",
       seeYouSoon: "త్వరలో కలుద్దాం",
     },
+    contact: {
+      label: "మమ్మల్ని సంప్రదించండి",
+      heading: "కుటుంబాలను సంప్రదించండి",
+    },
     event: {
       groom: "శ్రీవాత్సవ్",
       bride: "హర్షిత",
@@ -326,8 +343,8 @@ export const translations: Record<Language, Translations> = {
       venueName: "లక్ష్మి వేదిక, ఇంద్రాణి ఫంక్షన్ హాల్స్",
       venueFloors: "3వ & 4వ అంతస్తులు",
       venueAddress: "సుజాతనగర్, విశాఖపట్నం - 530051",
-      groomParents: { line1: "పి.వి. అప్పారావు (సాయి) &", line2: "లక్ష్మీ భవాని" },
-      brideParents: { line1: "జి.వి. సత్యనారాయణ &", line2: "సాయి లక్ష్మి" },
+      groomParents: { father: "పి.వి. అప్పారావు (సాయి)", mother: "లక్ష్మీ భవాని" },
+      brideParents: { father: "జి.వి. సత్యనారాయణ", mother: "సాయి లక్ష్మి" },
     },
   },
 };

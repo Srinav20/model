@@ -489,6 +489,121 @@ html {
   }
 }
 
+/* --- Contact the Families ---
+   Sits between Blessings and Closing; shares Closing's deep-maroon/gold/
+   ivory palette since it visually leads into that section. Two family
+   blocks, equal weight — single column (groom's family first) until
+   900px, two balanced columns from 900px up. */
+.contact-section {
+  padding: 72px 24px 88px;
+  text-align: center;
+
+  background: linear-gradient(180deg, #4a0d18, #5c0f1c);
+  color: #fdf8ee;
+}
+
+.contact-label {
+  margin: 0;
+
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #caa057;
+}
+
+.contact-heading {
+  margin: 14px 0 0;
+
+  font-family: var(--font-display), Georgia, "Times New Roman", serif;
+  font-size: clamp(24px, 6vw, 32px);
+  font-weight: 600;
+  color: #fdf8ee;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
+
+  max-width: 720px;
+  margin: 56px auto 0;
+}
+
+@media (min-width: 900px) {
+  .contact-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 64px;
+  }
+}
+
+.contact-family {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+}
+
+.contact-family-label {
+  width: 100%;
+  max-width: 260px;
+  margin: 0;
+  padding-bottom: 12px;
+
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #e3b463;
+
+  border-bottom: 1px solid rgba(202, 160, 87, 0.3);
+}
+
+.contact-person {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.contact-person-name {
+  margin: 0;
+
+  font-family: var(--font-display), Georgia, "Times New Roman", serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff4dc;
+}
+
+.contact-person-phone {
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  color: #f2d9a6;
+  text-decoration: none;
+
+  border-bottom: 1px solid rgba(242, 217, 166, 0.4);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.contact-person-phone:hover,
+.contact-person-phone:focus-visible {
+  color: #ffd88a;
+  border-color: #ffd88a;
+}
+
+.contact-person-phone--pending {
+  font-size: 13px;
+  font-style: italic;
+  color: rgba(253, 248, 238, 0.55);
+  border-bottom: none;
+}
+
+@media (min-width: 768px) {
+  .contact-section {
+    padding: 104px 24px 120px;
+  }
+}
+
 /* --- Closing section (invitation finale — no RSVP) --- */
 .closing-section {
   padding: 80px 24px 96px;
@@ -1392,7 +1507,9 @@ html {
 :lang(te) .site-nav-mobile-menu a,
 :lang(te) .site-nav-brand,
 :lang(te) .invitation-gate-date,
-:lang(te) .invitation-gate-button {
+:lang(te) .invitation-gate-button,
+:lang(te) .contact-label,
+:lang(te) .contact-family-label {
   letter-spacing: normal;
   text-transform: none;
 }
@@ -1416,7 +1533,11 @@ html {
 :lang(te) .site-nav-links a,
 :lang(te) .site-nav-mobile-menu a,
 :lang(te) .invitation-gate-date,
-:lang(te) .invitation-gate-button {
+:lang(te) .invitation-gate-button,
+:lang(te) .contact-label,
+:lang(te) .contact-family-label,
+:lang(te) .contact-heading,
+:lang(te) .contact-person-name {
   font-family: var(--font-telugu), "Noto Sans Telugu", sans-serif;
 }
 

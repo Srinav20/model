@@ -4,6 +4,7 @@ import SeamOrnament from '@/components/SeamOrnament';
 import EngagementCeremonySection from '@/components/EngagementCeremonySection';
 import OurJourneySection from '@/components/OurJourneySection';
 import BlessingsSection from '@/components/BlessingsSection';
+import ContactFamiliesSection from '@/components/ContactFamiliesSection';
 import ClosingSection from '@/components/ClosingSection';
 
 export default function Home() {
@@ -25,6 +26,9 @@ export default function Home() {
 
       {/* 04 — With Love & Blessings */}
       <BlessingsSection />
+
+      {/* 04.5 — Contact the Families */}
+      <ContactFamiliesSection />
 
       {/* 05 — Closing */}
       <ClosingSection />

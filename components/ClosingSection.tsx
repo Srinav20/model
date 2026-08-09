@@ -3,12 +3,11 @@
 import OrnamentDivider from "./OrnamentDivider";
 import ScrollReveal from "./ScrollReveal";
 import GoogleMapsIcon from "./GoogleMapsIcon";
-import { eventData, googleMapsUrl } from "@/lib/event-data";
+import { googleMapsUrl } from "@/lib/event-data";
 import { useLanguage } from "@/lib/language-context";
 
 export default function ClosingSection() {
   const { t } = useLanguage();
-  const hasWhatsapp = eventData.whatsappNumber.length > 0;
 
   return (
     <section id="closing" className="closing-section" aria-label="Closing">
@@ -45,37 +44,18 @@ export default function ClosingSection() {
             <GoogleMapsIcon className="closing-button-icon" />
             {t.closing.viewLocation}
           </a>
-
-          {hasWhatsapp ? (
-            <a
-              href={`https://wa.me/${eventData.whatsappNumber}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="closing-button"
-              aria-label="Contact via WhatsApp"
-            >
-              {t.closing.whatsapp}
-            </a>
-          ) : (
-            <button
-              type="button"
-              disabled
-              className="closing-button closing-button--disabled"
-              aria-label="WhatsApp contact number not yet available"
-            >
-              {t.closing.whatsapp}
-              <span className="closing-button-note">{t.closing.whatsappNote}</span>
-            </button>
-          )}
         </div>
       </ScrollReveal>
 
       <OrnamentDivider className="closing-ornament" />
 
-      {/* Final sign-off — the last line of the invitation, after the
-          Maps/WhatsApp actions and the ornament divider above. Add to
-          Calendar was intentionally removed from here (kept only in the
-          Engagement Ceremony section) to avoid a duplicate action. */}
+      {/* Final sign-off — the last line of the invitation, after the Maps
+          action and the ornament divider above. Add to Calendar was
+          removed from here earlier (kept only in the Engagement Ceremony
+          section) to avoid a duplicate action; WhatsApp Contact was
+          removed after that in favor of the new Contact the Families
+          section (see ContactFamiliesSection.tsx), which now carries the
+          family phone numbers instead. */}
       <ScrollReveal className="closing-final-reveal">
         <p className="closing-glyph closing-final-glyph" aria-hidden="true">
           ❦
