@@ -29,7 +29,7 @@ export default function OpenInvitationGate() {
       <div className="invitation-gate-inner">
         <GaneshaMotif className="invitation-gate-ganesha" />
         <p className="invitation-gate-names">
-          {eventData.groom} &amp; {eventData.bride}
+          {t.event.groom} &amp; {t.event.bride}
         </p>
         <p className="invitation-gate-date">{eventData.dateShort}</p>
         <button

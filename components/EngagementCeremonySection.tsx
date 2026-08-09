@@ -2,6 +2,7 @@
 
 import TwoRings from "./TwoRings";
 import Countdown from "./Countdown";
+import GoogleMapsIcon from "./GoogleMapsIcon";
 import { eventData, googleMapsUrl } from "@/lib/event-data";
 import { buildEventICSDataUrl } from "@/lib/calendar";
 import { useLanguage } from "@/lib/language-context";
@@ -54,7 +55,7 @@ export default function EngagementCeremonySection() {
         <div className="py-6 border-y border-amber-500/30 bg-amber-950/40 rounded-2xl space-y-2">
           <p className={labelClass}>{t.ceremony.dateTimeLabel}</p>
           <div className="text-2xl sm:text-3xl font-serif font-bold text-amber-100">
-            {eventData.dateDisplay}
+            {t.event.dateDisplay}
           </div>
           <p className="text-xl font-serif text-rose-300">{eventData.time}</p>
 
@@ -69,12 +70,12 @@ export default function EngagementCeremonySection() {
           <p className={labelClass}>{t.ceremony.venueLabel}</p>
           <div className="space-y-1">
             <h3 className="text-xl font-bold text-amber-100">
-              {eventData.venueName}
+              {t.event.venueName}
             </h3>
             <p className="text-amber-200/80 text-sm">
-              ({eventData.venueFloors})
+              ({t.event.venueFloors})
             </p>
-            <p className="text-amber-200/80 text-sm">{eventData.venueAddress}</p>
+            <p className="text-amber-200/80 text-sm">{t.event.venueAddress}</p>
           </div>
 
           <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
@@ -84,7 +85,7 @@ export default function EngagementCeremonySection() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-white font-medium px-6 py-3 rounded-full shadow-lg border border-amber-400/30 transition-all hover:scale-105 active:scale-95 text-sm"
             >
-              <span aria-hidden="true">📍</span> {t.ceremony.viewLocation}
+              <GoogleMapsIcon /> {t.ceremony.viewLocation}
             </a>
 
             <a
@@ -109,7 +110,7 @@ export default function EngagementCeremonySection() {
             {t.ceremony.warmRegardsLabel}
           </p>
           <p className="text-lg font-serif font-bold text-amber-200">
-            {eventData.parents}
+            {t.event.parents}
           </p>
         </div>
       </section>

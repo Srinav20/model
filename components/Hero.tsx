@@ -36,7 +36,7 @@ export default function Hero() {
         <p className="hero-small">{t.hero.subIntro}</p>
 
         <div className="hero-names">
-          <h1>{eventData.groom}</h1>
+          <h1>{t.event.groom}</h1>
 
           <div className="hero-and">
             <span />
@@ -44,7 +44,7 @@ export default function Hero() {
             <span />
           </div>
 
-          <h1>{eventData.bride}</h1>
+          <h1>{t.event.bride}</h1>
         </div>
 
         <p className="hero-date">

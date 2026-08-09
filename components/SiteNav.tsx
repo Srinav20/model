@@ -8,9 +8,9 @@ import MusicControl from "./MusicControl";
 const NAV_LINKS = [
   { key: "home", href: "#home" },
   { key: "ceremony", href: "#invitation" },
+  { key: "venue", href: "#venue" },
   { key: "journey", href: "#our-journey" },
   { key: "blessings", href: "#blessings" },
-  { key: "venue", href: "#venue" },
 ] as const;
 
 /**

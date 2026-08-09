@@ -580,6 +580,16 @@ html {
   border-color: #caa057;
 }
 
+/* Only present on the "View on Google Maps" button — inline SVG needs a
+   small nudge to sit on the text baseline instead of hanging low, plus a
+   little breathing room before the label. Buttons without an icon
+   (Add to Calendar, WhatsApp) are untouched by this rule. */
+.closing-button-icon {
+  display: inline-block;
+  vertical-align: -2px;
+  margin-right: 6px;
+}
+
 .closing-button:focus-visible {
   outline: 2px solid #f2d9a6;
   outline-offset: 2px;

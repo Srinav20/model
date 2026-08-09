@@ -5,17 +5,24 @@
 // which keys need human review before this ships with Telugu enabled for
 // real guests.
 //
-// Deliberately NOT translated (same in both languages, by design — see the
-// language-behavior rules this was built against):
+// The `event` block below holds bilingual DISPLAY copies of the couple's
+// names, the formal date, and venue/family details — these are what
+// visible JSX (Hero, EngagementCeremonySection, ClosingSection,
+// OpenInvitationGate) should read for on-screen text. This is deliberately
+// separate from lib/event-data.ts, whose values stay English-only and
+// unchanged, because they also feed functional/non-visible output that
+// must never vary by language: the .ics calendar file (lib/calendar.ts),
+// the Google Maps search URL, and image alt text. Changing the display
+// copy here never touches those.
+//
+// Still deliberately NOT translated (same in both languages, by design —
+// see the language-behavior rules this was built against):
 //   - eventData.blessing (the Sanskrit/Devanagari shloka — it isn't English
 //     or Telugu to begin with, so it never changes)
-//   - eventData.groom / eventData.bride (no Telugu name form supplied)
-//   - eventData.dateDisplay / dateShort / time (kept numerically/verbatim
-//     readable across languages)
-//   - eventData.venueName / venueFloors / venueAddress (proper nouns/
-//     address — transliterating them would make Maps search less useful)
-//   - journeyChapters[].image / imageAlt / date (image alt text stays
-//     English for now; see report)
+//   - eventData.dateShort / time / isoDateTime (numeric/verbatim, used by
+//     the countdown and the hero's compact date — stays as-is)
+//   - journeyChapters[].image / imageAlt, BlessingsSection's image alt
+//     (accessibility descriptions, not on-screen invitation text)
 
 export type Language = "en" | "te";
 
@@ -74,6 +81,15 @@ export type Translations = {
     whatsappNote: string;
     seeYouSoon: string;
   };
+  event: {
+    groom: string;
+    bride: string;
+    dateDisplay: string;
+    venueName: string;
+    venueFloors: string;
+    venueAddress: string;
+    parents: string;
+  };
 };
 
 // Explicitly typed as Record<Language, Translations> (a shared shape)
@@ -111,7 +127,7 @@ export const translations: Record<Language, Translations> = {
       venueLabel: "Venue",
       warmRegardsLabel: "Warm Regards",
       footerNote: "Seeking your blessings & presence on our special day",
-      viewLocation: "View Location",
+      viewLocation: "View on Google Maps",
       addToCalendar: "Add to Calendar",
     },
     countdown: {
@@ -161,11 +177,20 @@ export const translations: Record<Language, Translations> = {
       headingLine2: "To Have You With Us",
       text: "We look forward to celebrating with you.",
       signoff: "With Love,",
-      viewLocation: "View Location",
+      viewLocation: "View on Google Maps",
       addToCalendar: "Add to Calendar",
       whatsapp: "WhatsApp Contact",
       whatsappNote: "Number coming soon",
       seeYouSoon: "SEE YOU SOON",
+    },
+    event: {
+      groom: "Srivatsav",
+      bride: "Harshitha",
+      dateDisplay: "Sunday, 23 August 2026",
+      venueName: "Lakshmi Vedika, Indrani Function Halls",
+      venueFloors: "3rd & 4th floors",
+      venueAddress: "Sujatha Nagar, Visakhapatnam - 530051",
+      parents: "P.V. Appa Rao (Sai) & Lakshmi Bhavani",
     },
   },
 
@@ -198,7 +223,7 @@ export const translations: Record<Language, Translations> = {
       venueLabel: "వేదిక",
       warmRegardsLabel: "శుభాకాంక్షలతో",
       footerNote: "మా ప్రత్యేక దినాన మీ ఆశీర్వాదం మరియు సమక్షాన్ని కోరుకుంటున్నాము",
-      viewLocation: "స్థానాన్ని చూడండి",
+      viewLocation: "గూగుల్ మ్యాప్స్‌లో చూడండి",
       addToCalendar: "క్యాలెండర్‌కు జోడించండి",
     },
     countdown: {
@@ -248,11 +273,20 @@ export const translations: Record<Language, Translations> = {
       headingLine2: "ఎంతో సంతోషాన్నిస్తుంది",
       text: "మీతో కలిసి జరుపుకోవాలని ఎదురుచూస్తున్నాము.",
       signoff: "ప్రేమతో,",
-      viewLocation: "స్థానాన్ని చూడండి",
+      viewLocation: "గూగుల్ మ్యాప్స్‌లో చూడండి",
       addToCalendar: "క్యాలెండర్‌కు జోడించండి",
       whatsapp: "వాట్సాప్‌లో సంప్రదించండి",
       whatsappNote: "నంబర్ త్వరలో అందుబాటులోకి వస్తుంది",
       seeYouSoon: "త్వరలో కలుద్దాం",
+    },
+    event: {
+      groom: "శ్రీవాత్సవ్",
+      bride: "హర్షిత",
+      dateDisplay: "ఆదివారం, 23 ఆగస్టు 2026",
+      venueName: "లక్ష్మీ వేదిక, ఇంద్రాణి ఫంక్షన్ హాల్స్",
+      venueFloors: "3వ & 4వ అంతస్తులు",
+      venueAddress: "సుజాతనగర్, విశాఖపట్నం - 530051",
+      parents: "పి.వి. అప్పారావు (సాయి) & లక్ష్మీ భవాని",
     },
   },
 };

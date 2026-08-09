@@ -2,6 +2,7 @@
 
 import OrnamentDivider from "./OrnamentDivider";
 import ScrollReveal from "./ScrollReveal";
+import GoogleMapsIcon from "./GoogleMapsIcon";
 import { eventData, googleMapsUrl } from "@/lib/event-data";
 import { buildEventICSDataUrl } from "@/lib/calendar";
 import { useLanguage } from "@/lib/language-context";
@@ -27,7 +28,7 @@ export default function ClosingSection() {
 
         <p className="closing-signoff">{t.closing.signoff}</p>
         <p className="closing-names">
-          {eventData.groom} &amp; {eventData.bride}
+          {t.event.groom} &amp; {t.event.bride}
         </p>
 
         <p className="closing-glyph closing-glyph--heart" aria-hidden="true">
@@ -42,6 +43,7 @@ export default function ClosingSection() {
             className="closing-button"
             aria-label="View the venue location on Google Maps"
           >
+            <GoogleMapsIcon className="closing-button-icon" />
             {t.closing.viewLocation}
           </a>
 
