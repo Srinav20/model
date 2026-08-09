@@ -11,6 +11,7 @@ import { LanguageProvider } from "@/lib/language-context";
 import { AudioProvider } from "@/lib/audio-context";
 import SiteNav from "@/components/SiteNav";
 import OpenInvitationGate from "@/components/OpenInvitationGate";
+import { Analytics } from "@vercel/analytics/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -69,6 +70,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             {children}
           </AudioProvider>
         </LanguageProvider>
+        <Analytics />
       </body>
     </html>
   );
