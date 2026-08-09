@@ -28,7 +28,7 @@ export default function Hero() {
       <div className="hero-content">
         <div className="hero-blessing-block">
           <GaneshaMotif className="hero-ganesha" />
-          <p className="hero-blessing">{eventData.blessing}</p>
+          <p className="hero-blessing">{t.hero.blessing}</p>
         </div>
 
         <p className="hero-intro">{t.hero.intro}</p>
@@ -48,7 +48,7 @@ export default function Hero() {
         </div>
 
         <p className="hero-date">
-          <time dateTime={eventData.isoDateTime}>{eventData.dateShort}</time>
+          <time dateTime={eventData.isoDateTime}>{t.event.dateShort}</time>
         </p>
 
         <a href="#invitation" className="scroll-indicator">

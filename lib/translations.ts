@@ -8,19 +8,30 @@
 // The `event` block below holds bilingual DISPLAY copies of the couple's
 // names, the formal date, and venue/family details — these are what
 // visible JSX (Hero, EngagementCeremonySection, ClosingSection,
-// OpenInvitationGate) should read for on-screen text. This is deliberately
-// separate from lib/event-data.ts, whose values stay English-only and
-// unchanged, because they also feed functional/non-visible output that
-// must never vary by language: the .ics calendar file (lib/calendar.ts),
-// the Google Maps search URL, and image alt text. Changing the display
-// copy here never touches those.
+// OpenInvitationGate, OurJourneySection) should read for on-screen text.
+// This is deliberately separate from lib/event-data.ts, whose values stay
+// English-only and unchanged, because they also feed functional/non-visible
+// output that must never vary by language: the .ics calendar file
+// (lib/calendar.ts), the Google Maps search URL, and image alt text.
+// Changing the display copy here never touches those.
+//
+// event.dateShort mirrors eventData.dateShort (English) / adds a Telugu
+// month name — used for the Hero's compact date line and reused for Our
+// Journey Chapter 03's date (see journeyChapters[].hasDate in
+// lib/journey-data.ts). The <time dateTime> attribute itself keeps reading
+// eventData.isoDateTime directly — only the displayed text switches.
+//
+// hero.blessing used to be a single hardcoded Sanskrit/Devanagari string
+// shared by both languages (eventData.blessing, now unused/dead — left in
+// place rather than deleted since removing it wasn't requested). It's now
+// language-specific: English shows a plain-English invocation sentence,
+// Telugu shows the same mantra transliterated into Telugu script (not
+// Devanagari) — see the :lang(te) rules for .hero-blessing in globals.css.
 //
 // Still deliberately NOT translated (same in both languages, by design —
 // see the language-behavior rules this was built against):
-//   - eventData.blessing (the Sanskrit/Devanagari shloka — it isn't English
-//     or Telugu to begin with, so it never changes)
-//   - eventData.dateShort / time / isoDateTime (numeric/verbatim, used by
-//     the countdown and the hero's compact date — stays as-is)
+//   - eventData.time / isoDateTime (numeric/verbatim — feeds the countdown
+//     and the <time dateTime> attribute, stays as-is)
 //   - journeyChapters[].image / imageAlt, BlessingsSection's image alt
 //     (accessibility descriptions, not on-screen invitation text)
 
@@ -42,13 +53,15 @@ export type Translations = {
   };
   gate: { open: string };
   music: { play: string; pause: string };
-  hero: { intro: string; subIntro: string; scrollCta: string };
+  hero: { intro: string; subIntro: string; scrollCta: string; blessing: string };
   ceremony: {
     heading: string;
     invitationMessage: string;
     dateTimeLabel: string;
     venueLabel: string;
     warmRegardsLabel: string;
+    groomFamilyLabel: string;
+    brideFamilyLabel: string;
     footerNote: string;
     viewLocation: string;
     addToCalendar: string;
@@ -85,10 +98,12 @@ export type Translations = {
     groom: string;
     bride: string;
     dateDisplay: string;
+    dateShort: string;
     venueName: string;
     venueFloors: string;
     venueAddress: string;
-    parents: string;
+    groomParents: string;
+    brideParents: string;
   };
 };
 
@@ -118,6 +133,7 @@ export const translations: Record<Language, Translations> = {
       intro: "With the blessings of our families",
       subIntro: "We joyfully invite you to celebrate the engagement of",
       scrollCta: "Scroll to enter",
+      blessing: "With the blessings of Lord Ganesha",
     },
     ceremony: {
       heading: "Engagement Ceremony",
@@ -126,6 +142,8 @@ export const translations: Record<Language, Translations> = {
       dateTimeLabel: "Auspicious Date & Time",
       venueLabel: "Venue",
       warmRegardsLabel: "Warm Regards",
+      groomFamilyLabel: "Groom's Family",
+      brideFamilyLabel: "Bride's Family",
       footerNote: "Seeking your blessings & presence on our special day",
       viewLocation: "View on Google Maps",
       addToCalendar: "Add to Calendar",
@@ -187,10 +205,12 @@ export const translations: Record<Language, Translations> = {
       groom: "Srivatsav",
       bride: "Harshitha",
       dateDisplay: "Sunday, 23 August 2026",
+      dateShort: "23 · August · 2026",
       venueName: "Lakshmi Vedika, Indrani Function Halls",
       venueFloors: "3rd & 4th floors",
       venueAddress: "Sujatha Nagar, Visakhapatnam - 530051",
-      parents: "P.V. Appa Rao (Sai) & Lakshmi Bhavani",
+      groomParents: "P.V. Appa Rao (Sai) & Lakshmi Bhavani",
+      brideParents: "G.V. Satyanarayana & Sai Lakshmi",
     },
   },
 
@@ -214,6 +234,7 @@ export const translations: Record<Language, Translations> = {
       subIntro:
         "మా నిశ్చితార్థ వేడుకను జరుపుకోవడానికి సంతోషంగా మిమ్మల్ని ఆహ్వానిస్తున్నాము",
       scrollCta: "ప్రవేశించడానికి స్క్రోల్ చేయండి",
+      blessing: "॥ శ్రీ గణేశాయ నమః ॥",
     },
     ceremony: {
       heading: "నిశ్చితార్థ వేడుక",
@@ -222,7 +243,9 @@ export const translations: Record<Language, Translations> = {
       dateTimeLabel: "శుభ ముహూర్తం",
       venueLabel: "వేదిక",
       warmRegardsLabel: "శుభాకాంక్షలతో",
-      footerNote: "మా ప్రత్యేక దినాన మీ ఆశీర్వాదం మరియు సమక్షాన్ని కోరుకుంటున్నాము",
+      groomFamilyLabel: "వరుడి కుటుంబం",
+      brideFamilyLabel: "వధువు కుటుంబం",
+      footerNote: "మా ప్రత్యేక రోజున మీ ఆశీర్వాదం మరియు సమక్షాన్ని కోరుకుంటున్నాము",
       viewLocation: "గూగుల్ మ్యాప్స్‌లో చూడండి",
       addToCalendar: "క్యాలెండర్‌కు జోడించండి",
     },
@@ -232,7 +255,7 @@ export const translations: Record<Language, Translations> = {
       hours: "గంటలు",
       minutes: "నిమిషాలు",
       seconds: "సెకన్లు",
-      todayIsTheDay: "ఈ రోజే ఆ శుభ దినం",
+      todayIsTheDay: "ఈ రోజే ఆ శుభ రోజు",
     },
     journey: {
       label: "మా ప్రయాణం",
@@ -260,11 +283,11 @@ export const translations: Record<Language, Translations> = {
       ],
     },
     blessings: {
-      heading: "ప్రేమతో ఆశీర్వాదాలు",
+      heading: "ప్రేమతో",
       lines: [
         "ఈ నూతన అధ్యాయాన్ని మొదలుపెడుతూ,",
         "మీ ఆశీర్వాదాలను కోరుకుంటున్నాము మరియు",
-        "ఈ ప్రత్యేక దినాన్ని మీతో కలిసి",
+        "ఈ ప్రత్యేక రోజును మీతో కలిసి",
         "జరుపుకోవాలని ఎదురుచూస్తున్నాము.",
       ],
     },
@@ -283,10 +306,17 @@ export const translations: Record<Language, Translations> = {
       groom: "శ్రీవాత్సవ్",
       bride: "హర్షిత",
       dateDisplay: "ఆదివారం, 23 ఆగస్టు 2026",
-      venueName: "లక్ష్మీ వేదిక, ఇంద్రాణి ఫంక్షన్ హాల్స్",
+      dateShort: "23 · ఆగస్టు · 2026",
+      // "లక్ష్మి వేదిక" (short vowel) — spelling correction, venue name only.
+      // Deliberately NOT the same string as brideParents below (also
+      // "Lakshmi" in English) or groomParents' "లక్ష్మీ భవాని" (long vowel,
+      // unchanged) — those are separate people's names and were not
+      // touched by this fix.
+      venueName: "లక్ష్మి వేదిక, ఇంద్రాణి ఫంక్షన్ హాల్స్",
       venueFloors: "3వ & 4వ అంతస్తులు",
       venueAddress: "సుజాతనగర్, విశాఖపట్నం - 530051",
-      parents: "పి.వి. అప్పారావు (సాయి) & లక్ష్మీ భవాని",
+      groomParents: "పి.వి. అప్పారావు (సాయి) & లక్ష్మీ భవాని",
+      brideParents: "జి.వి. సత్యనారాయణ & సాయి లక్ష్మి",
     },
   },
 };

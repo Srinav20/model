@@ -143,15 +143,21 @@ html {
   }
 }
 
+/* English default: a short invocation sentence, so it can use the site's
+   usual restrained small-caps treatment (matches .hero-intro just below
+   it). Telugu mode shows the same mantra in Telugu script instead of an
+   English sentence — reset to normal spacing/case and the Telugu font
+   stack via :lang(te), same reasoning as the rest of the Telugu-safe
+   typography rules further down this file (heavy letter-spacing breaks
+   non-Latin glyph shaping). This line is no longer permanently Devanagari;
+   see lib/translations.ts hero.blessing for both language versions. */
 .hero-blessing {
-  /* Devanagari script — no Latin-style tracking. Letter-spacing breaks
-     conjunct/matra shaping in Devanagari, so this is deliberately different
-     from the English headings below, which keep their tracking. */
-  font-family: var(--font-devanagari), "Noto Sans Devanagari", sans-serif;
-  font-size: 15px;
-  letter-spacing: normal;
-  word-spacing: normal;
-  text-transform: none;
+  font-family: var(--font-display), Georgia, "Times New Roman", serif;
+  font-size: 14px;
+  font-style: italic;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
   color: #ffd88a;
 
   opacity: 0;
@@ -1279,6 +1285,7 @@ html {
    no forced case, and the Telugu-serif font stack. Scoped to specific
    classes rather than the whole document, so the couple's names and other
    permanently-English text (Latin script) are never touched by this. */
+:lang(te) .hero-blessing,
 :lang(te) .hero-intro,
 :lang(te) .hero-small,
 :lang(te) .scroll-indicator,
@@ -1301,6 +1308,7 @@ html {
   text-transform: none;
 }
 
+:lang(te) .hero-blessing,
 :lang(te) .hero-intro,
 :lang(te) .hero-small,
 :lang(te) .journey-intro-text,
@@ -1321,4 +1329,11 @@ html {
 :lang(te) .invitation-gate-date,
 :lang(te) .invitation-gate-button {
   font-family: var(--font-telugu), "Noto Sans Telugu", sans-serif;
+}
+
+/* Italic doesn't carry the same "elegant emphasis" meaning for Telugu
+   script that it does for the English blessing sentence, and can distort
+   glyph shaping — so it's dropped in Telugu mode only. */
+:lang(te) .hero-blessing {
+  font-style: normal;
 }

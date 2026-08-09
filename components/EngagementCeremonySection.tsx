@@ -98,8 +98,11 @@ export default function EngagementCeremonySection() {
           </div>
         </div>
 
-        {/* Warm regards */}
-        <div className="pt-6 border-t border-amber-500/30 space-y-1">
+        {/* Warm regards — two balanced family blocks (groom's + bride's).
+            grid-cols-1 stacks them on mobile; sm:grid-cols-2 sits them
+            side by side once there's enough width. Both blocks share
+            identical classes so neither reads as more prominent. */}
+        <div className="pt-6 border-t border-amber-500/30 space-y-4">
           <p
             className={
               language === "te"
@@ -109,9 +112,20 @@ export default function EngagementCeremonySection() {
           >
             {t.ceremony.warmRegardsLabel}
           </p>
-          <p className="text-lg font-serif font-bold text-amber-200">
-            {t.event.parents}
-          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+            <div className="space-y-1">
+              <p className={labelClass}>{t.ceremony.groomFamilyLabel}</p>
+              <p className="text-lg font-serif font-bold text-amber-200">
+                {t.event.groomParents}
+              </p>
+            </div>
+            <div className="space-y-1">
+              <p className={labelClass}>{t.ceremony.brideFamilyLabel}</p>
+              <p className="text-lg font-serif font-bold text-amber-200">
+                {t.event.brideParents}
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 

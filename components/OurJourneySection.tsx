@@ -52,7 +52,9 @@ export default function OurJourneySection() {
                   </span>
                   <h3 className="journey-title">{copy.title}</h3>
                   <p className="journey-subtitle">{copy.subtitle}</p>
-                  {chapter.date && <p className="journey-date">{chapter.date}</p>}
+                  {chapter.hasDate && (
+                    <p className="journey-date">{t.event.dateShort}</p>
+                  )}
                   <p className="journey-text">{copy.text}</p>
                 </div>
               </ScrollReveal>

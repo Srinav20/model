@@ -14,8 +14,14 @@ export type JourneyChapter = {
   number: string;
   image: string;
   imageAlt: string;
-  /** Only Chapter 03 has a confirmed date — the other two deliberately don't. */
-  date?: string;
+  /**
+   * Only Chapter 03 has a confirmed date — the other two deliberately
+   * don't. Just a flag, not the date string itself: the displayed text
+   * comes from t.event.dateShort (lib/translations.ts) so it switches with
+   * the language, same as the Hero's date line and matched to the same
+   * underlying date.
+   */
+  hasDate?: boolean;
 };
 
 export const journeyChapters: JourneyChapter[] = [
@@ -33,7 +39,7 @@ export const journeyChapters: JourneyChapter[] = [
   },
   {
     number: "03",
-    date: eventData.dateShort,
+    hasDate: true,
     image: "/images/engagement.png",
     imageAlt: `${eventData.groom} and ${eventData.bride} exchanging rings during their traditional engagement ceremony, surrounded by both families amid flowers and lit brass lamps`,
   },
