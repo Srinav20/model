@@ -333,8 +333,8 @@ export const translations: Record<Language, Translations> = {
     event: {
       groom: "శ్రీవాత్సవ్",
       bride: "హర్షిత",
-      dateDisplay: "ఆదివారం, 23 ఆగస్టు 2026",
-      dateShort: "23 · ఆగస్టు · 2026",
+      dateDisplay: "ఆదివారం, 23 ఆగష్టు 2026",
+      dateShort: "23 · ఆగష్టు · 2026",
       // "లక్ష్మి వేదిక" (short vowel) — spelling correction, venue name only.
       // Deliberately NOT the same string as brideParents below (also
       // "Lakshmi" in English) or groomParents' "లక్ష్మీ భవాని" (long vowel,
