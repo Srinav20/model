@@ -158,10 +158,10 @@ export const translations: Record<Language, Translations> = {
     ceremony: {
       heading: "Engagement Ceremony",
       invitationMessage:
-        "Together with our families, we request the pleasure of your presence as we celebrate our engagement.",
+        "Together with our families, we request the pleasure of your presence to celebrate our engagement.",
       dateTimeLabel: "Auspicious Date & Time",
       venueLabel: "Venue",
-      warmRegardsLabel: "Warm Regards",
+      warmRegardsLabel: "Inviting Families",
       groomFamilyLabel: "Groom's Family",
       brideFamilyLabel: "Bride's Family",
       footerNote: "Seeking your blessings & presence on our special day",
@@ -222,8 +222,8 @@ export const translations: Record<Language, Translations> = {
       seeYouSoon: "SEE YOU SOON",
     },
     contact: {
-      label: "REACH US",
-      heading: "Contact the Families",
+      label: "STAY CONNECTED",
+      heading: "Reach Our Families",
     },
     event: {
       groom: "Srivatsav",
@@ -266,7 +266,7 @@ export const translations: Record<Language, Translations> = {
         "మా కుటుంబాలతో కలిసి, మా నిశ్చితార్థాన్ని జరుపుకునే ఈ శుభ సందర్భంలో మీ సమక్షాన్ని కోరుకుంటున్నాము.",
       dateTimeLabel: "శుభ ముహూర్తం",
       venueLabel: "వేదిక",
-      warmRegardsLabel: "శుభాకాంక్షలతో",
+      warmRegardsLabel: "ఆహ్వానించువారు",
       groomFamilyLabel: "వరుడి కుటుంబం",
       brideFamilyLabel: "వధువు కుటుంబం",
       footerNote: "మా ప్రత్యేక రోజున మీ ఆశీర్వాదం మరియు సమక్షాన్ని కోరుకుంటున్నాము",
@@ -327,8 +327,8 @@ export const translations: Record<Language, Translations> = {
       seeYouSoon: "త్వరలో కలుద్దాం",
     },
     contact: {
-      label: "మమ్మల్ని సంప్రదించండి",
-      heading: "కుటుంబాలను సంప్రదించండి",
+      label: "సంప్రదింపులో ఉండండి",
+      heading: "అదనపు సమాచారం కొరకు",
     },
     event: {
       groom: "శ్రీవాత్సవ్",

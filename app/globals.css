@@ -575,9 +575,25 @@ html {
   color: #fff4dc;
 }
 
+/* All four numbers now render through formatPhone() (lib/phone.ts) into
+   the same "+91 XXXXX XXXXX" shape, so one fixed rule here is enough to
+   make them look identical — same size, spacing, line-height, and
+   alignment regardless of how each was originally typed into
+   familyContacts. font-variant-numeric keeps every digit the same width
+   so the two groups of five line up the same way for all four. The
+   formatted string is short and fixed-width, so nowrap never risks
+   overflow on mobile — it's here to guarantee the number is never
+   allowed to break awkwardly across two lines. */
 .contact-person-phone {
+  display: inline-block;
+  max-width: 100%;
+
   font-size: 15px;
-  letter-spacing: 0.04em;
+  line-height: 1.4;
+  letter-spacing: 0.06em;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+  white-space: nowrap;
   color: #f2d9a6;
   text-decoration: none;
 

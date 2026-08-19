@@ -2,15 +2,21 @@
 
 import ScrollReveal from "./ScrollReveal";
 import { familyContacts } from "@/lib/event-data";
+import { formatPhone } from "@/lib/phone";
 import { useLanguage } from "@/lib/language-context";
 
 /**
  * One person's row inside a family block: name, plus either a real
  * clickable `tel:` link (only when a number has actually been supplied in
  * lib/event-data.ts) or a quiet "Number coming soon" note — never an
- * invented placeholder number. The `tel:` href is derived from the same
- * display string shown on screen (spaces stripped), so the visible number
- * and the dialed number can never drift apart.
+ * invented placeholder number.
+ *
+ * formatPhone() (lib/phone.ts) normalizes whatever format each number was
+ * typed in — familyContacts currently has a mix, e.g. "+91 89780 81714"
+ * vs "+919493380887" — into the same "+91 XXXXX XXXXX" display for all
+ * four, and derives the `tel:` href from the same parsed digits, so the
+ * visible number and the dialed number can never drift apart. The actual
+ * stored numbers in lib/event-data.ts are never modified by this.
  */
 function ContactPerson({
   name,
@@ -21,18 +27,18 @@ function ContactPerson({
   phone: string;
   pendingLabel: string;
 }) {
-  const hasPhone = phone.trim().length > 0;
+  const formatted = formatPhone(phone);
 
   return (
     <div className="contact-person">
       <p className="contact-person-name">{name}</p>
-      {hasPhone ? (
+      {formatted ? (
         <a
-          href={`tel:${phone.replace(/\s+/g, "")}`}
+          href={formatted.href}
           className="contact-person-phone"
           aria-label={`Call ${name}`}
         >
-          {phone}
+          {formatted.display}
         </a>
       ) : (
         <p className="contact-person-phone contact-person-phone--pending">
@@ -58,7 +64,7 @@ export default function ContactFamiliesSection() {
     <section
       id="contact"
       className="contact-section"
-      aria-label="Contact the Families"
+      aria-label="Reach Our Families"
     >
       <ScrollReveal className="contact-intro">
         <p className="contact-label">{t.contact.label}</p>

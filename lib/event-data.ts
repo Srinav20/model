@@ -42,21 +42,17 @@ export const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${
 // this lives here rather than in lib/translations.ts alongside the other
 // bilingual display copy.
 //
-// Format: a display-ready string with a leading "+" and country code
-// (e.g. "+91 98765 43210"). ContactFamiliesSection.tsx builds the
-// `tel:` link by stripping the spaces from this same string, so the
-// visible text and the dialed number can never drift apart.
+// Any reasonable format is fine here (with spaces, without, with dashes)
+// — lib/phone.ts's formatPhone() parses out the digits and renders every
+// number the same way ("+91 XXXXX XXXXX") in ContactFamiliesSection.tsx,
+// and builds the `tel:` link from those same digits, so the visible text
+// and the dialed number always match regardless of how it's typed here.
 //
-// NONE of these have been supplied yet — a project-wide search turned up
-// no existing phone numbers for any of the four family members (the old
-// eventData.whatsappNumber below is empty too). Every field here is left
-// as "" deliberately. ContactFamiliesSection.tsx never invents a number:
-// an empty entry renders the person's name with a "Number coming soon"
-// note instead of a fake/example tel: link. Fill in real numbers here
-// (digits are fine to include spaces for readability) once you have them.
+// An empty "" entry renders that person's name with a "Number coming
+// soon" note instead of a phone link — never a fake/example number.
 export const familyContacts = {
   groomFather: "+91 89780 81714", // P.V. Appa Rao (Sai)
   groomMother: "+91 95739 22140", // Lakshmi Bhavani
-  brideFather: "+91 9494138118", // G.V. Satyanarayana
-  brideMother: "+919493380887", // Sai Lakshmi
+  brideFather: "+91 94941 38118", // G.V. Satyanarayana
+  brideMother: "+91 94933 80887", // Sai Lakshmi
 };
