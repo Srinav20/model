@@ -36,6 +36,18 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     // Countdown.tsx/ScrollReveal.tsx, required by
     // react-hooks/set-state-in-effect.
     const id = setTimeout(() => {
+      // A `?lang=te` link (shared with Telugu-reading guests) takes
+      // priority over any stored preference, so that link always opens in
+      // Telugu instead of relying on someone finding and tapping the
+      // language switcher. Plain links with no ?lang param behave exactly
+      // as before (stored preference, else English default).
+      const urlLang = new URLSearchParams(window.location.search).get("lang");
+      if (urlLang === "en" || urlLang === "te") {
+        setLanguageState(urlLang);
+        window.localStorage.setItem(STORAGE_KEY, urlLang);
+        return;
+      }
+
       const stored = window.localStorage.getItem(STORAGE_KEY);
       if (stored === "en" || stored === "te") {
         setLanguageState(stored);
