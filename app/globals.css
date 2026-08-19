@@ -1563,3 +1563,21 @@ html {
 :lang(te) .hero-blessing {
   font-style: normal;
 }
+
+/* Telugu glyphs read visually smaller than the English uppercase/tracked
+   treatment these three lines were originally sized for (no letter-
+   spacing or forced caps in Telugu — see the shared :lang(te) reset rules
+   above), so they get a modest size bump here to match the English
+   version's visual weight. English sizes (.hero-blessing/.hero-intro/
+   .hero-small base rules) are untouched. */
+:lang(te) .hero-blessing {
+  font-size: 16px;
+}
+
+:lang(te) .hero-intro {
+  font-size: 15px;
+}
+
+:lang(te) .hero-small {
+  font-size: 14px;
+}
